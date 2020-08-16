@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #apps propias
     'apps.inventario',
     'apps.produccion',
     'apps.comercial',
@@ -84,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'inplace',
         'USER': 'root',
-        'PASSWORD':'1234',
+        'PASSWORD':'Admin1234*',
         'HOST':'localhost',
         'PORT':3306,
     }
