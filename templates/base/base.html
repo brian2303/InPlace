@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{% block title %} {% endblock title %}</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'lib/plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'lib/dist/css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Menu superior general -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Minimizador de sidebar -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
+        <!-- Menu de notificaciones de la derecha -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Notificationes Generales -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">1</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-header"> Notificaciones</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                    <i class="fas fa-envelope mr-2"></i> 4 Mensajes nuevos
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
+                </div>
+            </li>
+            <!-- Cierre de sesion -->
+            <li class="nav-item">
+            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+            <i class="fas fa-sign-out-alt"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Nombre sistema y Logo -->
+    <div class="brand-link">
+        <!-- <img src="" alt="">  <-- El logo iria aca -->
+        <span class="brand-text font-weight-light">InPlace</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <!-- <img src="" class="img-circle elevation-2" alt="Img opc"> -->
+        </div>
+        <div class="info">
+            <a href="#" class="d-block">Nombre Usuario</a>
+        </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+            {% include 'base/menu/navegacion.html' %}
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    {% block titulomodulo %}
+
+                    {% endblock titulomodulo %}
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Contenido Principal -->
+    <div class="content">
+        {% block contentprincipal %}
+        
+        {% endblock contentprincipal %}
+    </div>
+    <!-- Contenido Principal -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Barra de cierre de sesión -->
+    <aside class="control-sidebar control-sidebar-dark" style="height: 60px;">
+        <div class="p-3">
+            <a href="">Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+        InPlace
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; InPlace </strong> Todos los derechos reservados.
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="{% static 'lib/plugins/jquery/jquery.min.js' %} "></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'lib/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'lib/dist/js/adminlte.min.js' %}"></script>
+</body>
+</html>
