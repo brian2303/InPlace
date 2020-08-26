@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 
 {% load static %}
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{% block title %} {% endblock title %}</title>
+    <title>{{title}}</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{% static 'lib/adminlte3/plugins/fontawesome-free/css/all.min.css' %}">
-    <!-- Theme style -->
+    <!-- AdminLTE -->
     <link rel="stylesheet" href="{% static 'lib/adminlte3/dist/css/adminlte.min.css' %}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{% static 'lib/adminlte3/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'lib/adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'lib/adminlte3/dist/js/adminlte.min.js' %}"></script>
+    <!-- Sweet Alert -->
+    <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
+    <!--EN ESTE BLOQUE SE CARGAN LAS LIBRERIAS DE DATATABLE DESDE EL ARCHIVO list.html DE LOS TEMPLATES BASE-->
+    {% block head %}
+    {% endblock head %}
 </head>
 <body class="hold-transition sidebar-mini">
+<!--ACA VA TODO EL CONTENIDO DE LAS TABLAS DE CADA MODULO-->
 <div class="wrapper">
-    <!-- Menu superior general -->
+    <!-- MENU SUPERIOR GENERAL -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Minimizador de sidebar -->
         <ul class="navbar-nav">
             <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
-        <!-- Menu de notificaciones de la derecha -->
+        <!-- MENU DE NOTIFICACIONES DE LA DERECHA -->
         <ul class="navbar-nav ml-auto">
-            <!-- Notificationes Generales -->
+            <!-- LISTA DE NOTIFICACIONES -->
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
@@ -44,26 +56,21 @@
                     <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
                 </div>
             </li>
-            <!-- Cierre de sesion -->
+            <!-- BOTÓN CIERRE DE SESIÓN -->
             <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
             <i class="fas fa-sign-out-alt"></i></a>
             </li>
         </ul>
     </nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Nombre sistema y Logo -->
+    <!-- NOMBRE DE SISTEMA Y ESPACIO PARA LOGO -->
     <div class="brand-link">
-        <!-- <img src="" alt="">  <-- El logo iria aca -->
+        <!-- <img src="" alt="">  El logo iria aca -->
         <span class="brand-text font-weight-light">InPlace</span>
     </div>
-
-    <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
+        <!-- NOMBRE DE USUARIO Y IMAGEN OPCIONAL -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
             <!-- <img src="" class="img-circle elevation-2" alt="Img opc"> -->
@@ -72,66 +79,50 @@
             <a href="#" class="d-block">Nombre Usuario</a>
         </div>
         </div>
-
-        <!-- Sidebar Menu -->
             {% include 'base/navegacion.html' %}
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    <!-- TITULO DE ENCABEZADO DE CADA PAGINA -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    {% block titulomodulo %}
-
-                    {% endblock titulomodulo %}
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                    <h4>{{title}}</h4>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.content-header -->
 
-    <!-- Contenido Principal -->
+    <!-- CONTENIDO DE CADA PAGINA -->
     <div class="content">
         {% block contentprincipal %}
         
         {% endblock contentprincipal %}
     </div>
-    <!-- Contenido Principal -->
     </div>
-    <!-- /.content-wrapper -->
 
-    <!-- Barra de cierre de sesión -->
+    <!-- CERRAR SESIÓN -->
     <aside class="control-sidebar control-sidebar-dark" style="height: 60px;">
         <div class="p-3">
             <a href="">Cerrar Sesión</a>
         </div>
     </aside>
 
-    <!-- Main Footer -->
+    <!-- PIE DE PAGINA -->
     <footer class="main-footer">
-    <!-- To the right -->
+    <!-- CONTENIDO DE LA DERECHA -->
     <div class="float-right d-none d-sm-inline">
         InPlace
     </div>
-    <!-- Default to the left -->
+    <!-- CONTENIDO DE LA IZQUIERDA -->
     <strong>Copyright &copy; InPlace </strong> Todos los derechos reservados.
     </footer>
 </div>
-<!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="{% static 'lib/adminlte3/plugins/jquery/jquery.min.js' %} "></script>
-<!-- Bootstrap 4 -->
-<script src="{% static 'lib/adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static 'lib/adminlte3/dist/js/adminlte.min.js' %}"></script>
+<!--BLOQUE JAVASCRIPT PARA CARGAR FUNCION DataTable() DE JQUERY ESTO SE HACE EN EL ARCHIVO BASE list.html -->
+{% block javascript %}
+{% endblock javascript %}
 </body>
 </html>

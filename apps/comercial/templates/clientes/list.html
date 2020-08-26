@@ -1,0 +1,91 @@
+{% extends 'crud/list.html' %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width:10%;">Identificacion</th>
+        <th scope="col" style="width:15%;">Nombre</th>
+        <th scope="col" style="width:15%;">Apellidos</th>
+        <th scope="col" style="width:15%;">ciudad</th>
+        <th scope="col" style="width:15%;">Email</th>
+        <th scope="col" style="width:15%;">Detalles</th>
+        <th scope="col" style="width:10%;">Opciones</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+    {% for cliente in object_list %}
+        <tr>
+            <td>{{cliente.numero_identificacion}}</td>
+            <td>{{cliente.nombres}}</td>
+            <td>{{cliente.apellidos}}</td>
+            <td>{{cliente.ciudad}}</td>
+            <td>{{cliente.email}}</td>
+            <td>
+                <button 
+                    id = "btn-telefonos"
+                    class="btn btn-outline-primary btn-xs btn-block"
+                    data-toggle="modal" data-target="#modaltelefono">
+                    Telefonos
+                </button>
+            </td>
+            <td>
+                <a href="" class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock rows %}
+{% block modal %}
+
+{% comment %} <script>
+    const URL = "{{url_list}}"
+    console.log(URL)
+</script> {% endcomment %}
+
+<!-- MODAL PARA MOSTRAR TELEFONOS -->
+<div class="modal" id="modaltelefono">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- ENCABEZADO DEL MODAL -->
+            <div class="modal-header">
+            <h4 class="modal-title">Telefonos</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- CUERPO DEL MODAL -->
+            <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nro</th>
+                            <th>Telefono</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>312323211</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+            <!-- PIE DE PAGINA DEL MODAL -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock modal %}
+
