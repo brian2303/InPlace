@@ -20,17 +20,18 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Celular</label>
-                        <input class="form-control" type="text" name="celular">
+                        <input class="form-control" value="{{ celular }}" type="text" name="celular" required>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Telefono opcional</label>
-                        <input class="form-control" type="text" name="telefono_opcional">
+                        <input class="form-control" value="{{telefono_opcional}}" type="text" name="telefono_opcional">
                     </div>
                 </div>
             </div>
         </div>
+        <input type="hidden" name="cliente_id" value ="{{id_cliente}}" >
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btnTest" id="btn-new">
                 Guardar Registro

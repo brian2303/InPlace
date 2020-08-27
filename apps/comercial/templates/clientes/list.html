@@ -30,10 +30,10 @@
                 </button>
             </td>
             <td>
-                <a href="" class="btn btn-warning btn-sm">
+                <a href="{% url 'cliente_editar' cliente.pk %}" class="btn btn-warning btn-sm">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a class="btn btn-danger btn-sm">
+                <a href=" {% url 'cliente_eliminar' cliente.pk %}"  class="btn btn-danger btn-sm">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -41,7 +41,6 @@
     {% endfor %}
 {% endblock rows %}
 {% block modal %}
-
 <script>
     // ELEMENTO DEL BODY TABLE
     const btn_telefonos = document.querySelectorAll('#btn-telefonos')
