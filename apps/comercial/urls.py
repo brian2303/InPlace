@@ -5,8 +5,5 @@ from apps.comercial.views.clientes.views import *
 
 urlpatterns = [
     path('clientes/lista',ClienteListView.as_view(),name='clientes_lista'),
-    # path('clientes/lista/<int:pk>/',
-    #     TelefonoClienteListView.as_view()
-    #     ,name='telefonoscliente'
-    # )
+    path('clientes/crear',ClienteCreateView.as_view(),name='cliente_crear')
 ]

@@ -22,6 +22,7 @@
             <td>{{cliente.email}}</td>
             <td>
                 <button 
+                    value = "{{cliente.pk}}"
                     id = "btn-telefonos"
                     class="btn btn-outline-primary btn-xs btn-block"
                     data-toggle="modal" data-target="#modaltelefono">
@@ -41,10 +42,47 @@
 {% endblock rows %}
 {% block modal %}
 
-{% comment %} <script>
-    const URL = "{{url_list}}"
-    console.log(URL)
-</script> {% endcomment %}
+<script>
+    // ELEMENTO DEL BODY TABLE
+    const btn_telefonos = document.querySelectorAll('#btn-telefonos')
+    btn_telefonos.forEach(btn =>{
+        btn.addEventListener('click',()=>{
+        const URL = "{{url_list}}"
+        const DATA = {
+            action : 'listar_telefonos',
+            id : btn.value
+        }
+        const PARAMETROS = {
+            method : 'POST',
+            body : JSON.stringify(DATA),
+            headers : {
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch(URL,PARAMETROS)
+            .then(response => response.json())
+            .then(res => renderizarTelefonos(res))
+            .catch(err => console.log(err))
+        })
+    })
+    // crea las etiquetas para renderizar los numeros de telefono
+    function renderizarTelefonos(listaTelefonos){
+        let tbody = document.getElementById('body-telefonos')
+        if (tbody.hasChildNodes()){
+            tbody.innerHTML = ''
+        }
+        listaTelefonos.forEach(tel => {
+            let tr = document.createElement("tr")
+            let tdId = document.createElement("td")
+            tdId.textContent = tel.id
+            let tdTelefono = document.createElement("td")
+            tdTelefono.textContent = tel.numero_telefono
+            tr.appendChild(tdId)
+            tr.appendChild(tdTelefono)
+            tbody.appendChild(tr)
+        })
+    }
+</script>
 
 <!-- MODAL PARA MOSTRAR TELEFONOS -->
 <div class="modal" id="modaltelefono">
@@ -68,11 +106,8 @@
                             <th>Telefono</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>312323211</td>
-                        </tr>
+                        <tbody id='body-telefonos'>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -81,7 +116,7 @@
 
             <!-- PIE DE PAGINA DEL MODAL -->
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
 
         </div>
