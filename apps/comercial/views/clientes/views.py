@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
-from django.views.generic import ListView,CreateView
+from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 
 # propias
 from apps.comercial.models import Cliente,TelefonoCliente
@@ -75,3 +75,65 @@ class ClienteCreateView(CreateView):
         else:
             return redirect('cliente_crear')
         
+
+"""modificar cliente"""
+class ClienteUpdateView(UpdateView):
+    model = Cliente
+    template_name = "clientes/create.html"
+    form_class = ClienteForm
+    second_form_class = TelefonoClienteForm
+    success_url = reverse_lazy('clientes_lista')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Editar Cliente'
+        context['id_cliente'] = context['object'].pk
+        telefonos_cliente = context['object'].telefonos.all()
+        context['celular'] = telefonos_cliente[0].numero_telefono
+        if len(telefonos_cliente) == 2:
+            context['telefono_opcional'] = telefonos_cliente[1].numero_telefono
+        return context
+    
+    def post(self,request,*args,**kwgars):
+        # se esta creando una instancia del objeto que recibimos como llave primaria
+        self.object = self.get_object
+        cliente = Cliente.objects.get(pk=request.POST['cliente_id'])
+        form = self.form_class(request.POST,instance=cliente)
+        if form.is_valid():
+            cliente = form.save(commit=False)
+            celular = cliente.telefonos.first()
+            celular.numero_telefono = request.POST['celular']
+            celular.save()
+            if len(cliente.telefonos.all()) == 2:
+                telefono_opcional = cliente.telefonos.last()
+                telefono_opcional.numero_telefono = request.POST['telefono_opcional']
+                telefono_opcional.save()
+            elif 'telefono_opcional' in request.POST and request.POST['telefono_opcional'] != '':
+                cliente.telefonos.create(numero_telefono=request.POST['telefono_opcional'])
+            cliente.save()
+            return redirect('clientes_lista')
+        else:
+            return redirect('cliente_crear')
+
+
+
+
+"""eliminar un cliente"""
+class ClienteDeleteView(DeleteView):
+    model = Cliente
+    template_name = "clientes/delete.html"
+    success_url = reverse_lazy('clientes_lista')
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    
+    def post(self,request,*args,**kwgars):
+        data = {}
+        try:
+            self.object = self.get_object()
+            self.object.delete()
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)
