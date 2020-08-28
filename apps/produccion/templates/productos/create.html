@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+{% block contentprincipal %}
+<form method="post">
+    <div class="card">
+        <div class="card-header">Registrar Producto</div>
+        <div class="card-body">
+            {% csrf_token %}
+            <div class="row">
+            {% for campo in form.visible_fields %}
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>{{ campo.label }}</label>
+                            {{campo}}
+                        </div>
+                    </div>
+            {% endfor %}
+            </div>            
+        </div>
+        <input type="hidden" name="producto_id" value ="{{id_producto}}" >
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btnTest" id="btn-new">
+                Guardar Registro
+                <i class="fas fa-plus-circle"></i>
+            </button>
+        </div>
+    </div>
+</form>
+    
+{% endblock contentprincipal %}
