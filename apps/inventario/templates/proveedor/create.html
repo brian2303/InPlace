@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block contentprincipal %}
+<form method="post">
+    <div class="card">
+        <div class="card-header">{{title}}</div>
+        <div class="card-body">
+            {% csrf_token %}
+            <div class="row">
+            {% for campo in form.visible_fields %}
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>{{ campo.label }}</label>
+                            {{campo}}
+                        </div>
+                    </div>
+            {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Celular</label>
+                        <input class="form-control" value="{{ celular }}" type="text" name="celular" required>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Telefono opcional</label>
+                        <input class="form-control" value="{{telefono_opcional}}" type="text" name="telefono_opcional">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="proveedor_id" value ="{{id_proveedor}}" >
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btnTest" id="btn-new">
+                Guardar Registro
+                <i class="fas fa-plus-circle"></i>
+            </button>
+        </div>
+    </div>
+</form>
+    
+{% endblock contentprincipal %}
