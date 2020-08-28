@@ -1,7 +1,9 @@
 from django.urls import path
+# permite mapear la ruta para ubicar la vista del crud (linea 5)
 from . import views
-from apps.produccion.views.categorias.views import CategoriaProductosListView
+# rutas de las vistas del crud de categoria.
+from apps.produccion.views.categorias.views import *
 
 urlpatterns = [
-    path('categoria/listar', CategoriaProductosListView.as_view()),
+    path('categoria/lista', CategoriaProductosListView.as_view(),name='categoria_lista'),
 ]
