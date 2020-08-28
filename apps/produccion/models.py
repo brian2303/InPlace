@@ -10,6 +10,9 @@ class CategoriaProductos(models.Model):
         verbose_name='categoria'
         verbose_name_plural='categorias'
         db_table='categoria_productos'
+    
+    def __str__(self):
+        return self.nombre_categoria
         
 
 class Productos(models.Model):
