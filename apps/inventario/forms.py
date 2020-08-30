@@ -66,7 +66,8 @@ class InsumosForm(ModelForm):
         widgets = {
             'nombre' : TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
             'cantidad' : NumberInput(

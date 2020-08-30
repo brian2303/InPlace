@@ -8,7 +8,7 @@ from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 
-# modelo de clientes
+# modelos y formularios de unidades de medida
 from apps.inventario.models import UnidadMedida
 from apps.inventario.forms import UnidadMedidaForm
 
@@ -50,6 +50,11 @@ class UnidadMedidaDeleteView(DeleteView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Listado de unidades de medida'
+        context["url_list"] = reverse_lazy('unidadmedida_lista')
+        return context
     
     def post(self,request,*args,**kwgars):
         data = {}

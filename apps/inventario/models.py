@@ -36,6 +36,9 @@ class UnidadMedida(models.Model):
     nombre = models.CharField(max_length=25)
     abreviatura = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.nombre
+    
     class Meta:
         db_table = 'unidad_medida'
         verbose_name = 'unidad de medida'
@@ -48,8 +51,8 @@ class Insumos(models.Model):
     cantidad = models.IntegerField(default=0)
     unidad_medida = models.ForeignKey(
         UnidadMedida,
+        default='sin categoria',
         on_delete=models.SET_DEFAULT,
-        default='sin categoria'
     )
 
     class Meta:

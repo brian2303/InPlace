@@ -127,6 +127,11 @@ class ProveedorDeleteView(DeleteView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Listado de proveedores'
+        context["url_list"] = reverse_lazy('proveedor_lista')
+        return context
     
     def post(self,request,*args,**kwgars):
         data = {}

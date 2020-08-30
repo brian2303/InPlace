@@ -1,6 +1,7 @@
 from django.urls import path
 from .views.proveedores.views import *
 from .views.unidad_medida.views import *
+from .views.insumos.views import *
 
 urlpatterns = [
     path('proveedor/lista',ProveedorListView.as_view(),name='proveedor_lista'),
@@ -11,5 +12,9 @@ urlpatterns = [
     path('unidadmedida/crear',UnidadMedidaCreateView.as_view(),name='unidadmedida_crear'),
     path('unidadmedida/editar/<int:pk>',UnidadMedidaUpdateView.as_view(),name='unidadmedida_editar'),
     path('unidadmedida/eliminar/<int:pk>',UnidadMedidaDeleteView.as_view(),name='unidadmedida_eliminar'),
+    path('insumo/lista',InsumosListView.as_view(),name='insumo_lista'),
+    path('insumo/crear',InsumosCreateView.as_view(),name='insumo_crear'),
+    path('insumo/editar/<int:pk>',InsumosUpdateView.as_view(),name='insumo_editar'),
+    path('insumo/eliminar/<int:pk>',InsumosDeleteView.as_view(),name='insumo_eliminar'),
     
 ]
