@@ -1,4 +1,4 @@
-from apps.produccion.models import Productos, CategoriaProductos
+from apps.produccion.models import Productos, CategoriaProductos, Transportadora, TelefonoTransportadora
 from django.forms import *
 
 class CategoriaProductosForm(ModelForm):
@@ -55,10 +55,67 @@ class ProductosForm(ModelForm):
                     'placeholder':'Precio Unitario...'
                 }
             ),
-            'categoria': TextInput(
+            'categoria': Select(
                 attrs={
                     'class':'form-control',
                     'placeholder':'Categoría...'
                 }
             ),            
+        }
+
+class TransportadoraForm(ModelForm):
+    
+    class Meta:
+        model = Transportadora
+        fields = [
+            'nombre',
+            'ciudad',
+            'direccion',
+            'email',
+        ]
+        labels = {
+            'nombre': 'Nombre',
+            'ciudad':'Ciudad',
+            'direccion':'Direccion',
+            'email':'Email',
+        }
+        widgets = {
+            'nombre': TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder':'Nombre...'
+                }
+            ),
+            'ciudad': TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder':'Ciudad...'
+                }
+            ),
+            'direccion': TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder':'Dirección...'
+                }
+            ),
+            'email': TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder':'Email...'
+                }
+            )
+        }
+
+
+
+class TelefonoTransportadoraForm(ModelForm):
+    
+    class Meta:
+        model = TelefonoTransportadora
+        fields = '__all__'
+        labels = {
+            'numero_telefono':'Numero'
+        }
+        widgets = {
+            'numero_telefono' : TextInput(attrs={'class':'form-control'})
         }

@@ -8,7 +8,7 @@ from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 
-# modelo de clientes
+# modelo de transportadoras
 from apps.produccion.models import Productos, CategoriaProductos
 from apps.produccion.forms import CategoriaProductosForm
 

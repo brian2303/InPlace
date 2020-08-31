@@ -3,6 +3,7 @@ from datetime import datetime
 
 # Create your models here.
 
+"""Modelo de Categoría de Productos"""
 class CategoriaProductos(models.Model):
     nombre_categoria=models.CharField(max_length=25)
     
@@ -14,7 +15,7 @@ class CategoriaProductos(models.Model):
     def __str__(self):
         return self.nombre_categoria
         
-
+"""Modelo de Productos"""
 class Productos(models.Model):
     nombre=models.CharField(max_length=25)
     cantidad=models.CharField(max_length=11)
@@ -30,5 +31,39 @@ class Productos(models.Model):
         verbose_name_plural='productos'
         db_table='productos'
 
+
+"""Modelo de Transportadora"""
+class Transportadora(models.Model):
+    nombre=models.CharField(max_length=25)
+    ciudad=models.CharField(max_length=25)
+    direccion=models.CharField(max_length=25)
+    email=models.CharField(max_length=25)
+
+    class Meta:
+        verbose_name='transportadora'
+        verbose_name_plural='transportadora'
+        db_table='transportadora'
+    
+    def __str__(self):
+        return self.nombre
+
+
+"""Modelo para guardar los telefonos de la Transportadora"""
+class TelefonoTransportadora(models.Model):
+
+    numero_telefono = models.CharField(max_length=15)
+    transportadora = models.ForeignKey(
+        Transportadora,
+        on_delete=models.CASCADE,
+        related_name = 'telefonos'
+    )
+
+    class Meta:
+        db_table = 'telefono_transportadora'
+        verbose_name = "telefono transportadora"
+        verbose_name_plural = "telefonos transportadoras"
+
+    def __str__(self):
+        return self.numero_telefono
 
 

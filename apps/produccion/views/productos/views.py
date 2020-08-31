@@ -8,7 +8,7 @@ from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 
-# modelo de clientes
+# modelo de transportadoras
 from apps.produccion.models import Productos, CategoriaProductos
 from apps.produccion.forms import ProductosForm
 
@@ -31,3 +31,30 @@ class ProductosCreateView(CreateView):
     template_name = "productos/create.html"
     form_class = ProductosForm
     success_url = reverse_lazy('productos_lista')
+
+"""modificar un producto"""
+class ProductosUpdateView(UpdateView):
+    model = Productos
+    template_name = "productos/create.html"
+    form_class = ProductosForm    
+    success_url = reverse_lazy('productos_lista')
+
+"""eliminar un producto"""
+class ProductosDeleteView(DeleteView):
+    model = Productos
+    template_name = "productos/delete.html"
+    success_url = reverse_lazy('productos_lista')
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    
+    def post(self,request,*args,**kwgars):
+        data = {}
+        try:
+            self.object = self.get_object()
+            self.object.delete()
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)
