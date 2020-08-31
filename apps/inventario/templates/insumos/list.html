@@ -1,0 +1,29 @@
+{% extends 'crud/list.html' %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width:10%;">Id</th>
+        <th scope="col" style="width:30%;">Nombre</th>
+        <th scope="col" style="width:15%;">Cantidad</th>
+        <th scope="col" style="width:30%;">Unidad Medida</th>
+        <th scope="col" style="width:15%;">Opciones</th>
+    </tr>
+{% endblock columns %}
+{% block rows %}
+    {% for insumo in object_list %}
+    <tr>
+        <td>{{insumo.id}}</td>
+        <td>{{insumo.nombre}}</td>
+        <td>{{insumo.cantidad}}</td>
+        <td>{{insumo.unidad_medida.nombre}}</td>
+        <td>
+            <a href="{% url 'insumo_editar' insumo.id %} " class="btn btn-warning btn-sm">
+                <i class="fas fa-edit"></i>
+            </a>
+            <a href="{% url 'insumo_eliminar' insumo.id %} "  class="btn btn-danger btn-sm">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock rows %}
