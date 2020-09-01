@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.produccion',
     'apps.comercial',
     'apps.usuarios',
+    'apps.landing_page',
 ]
 
 MIDDLEWARE = [
