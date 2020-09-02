@@ -56,18 +56,18 @@
                             <!-- Main-menu -->
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>
-                                    <ul id="navigation">
-                                        <li><a href="#index">Home</a></li>
-                                        <li><a href="#about">About Us</a></li>
-                                        <li><a href="#products">Products</a></li>                                        
-                                        <li><a href="#contact">Contact</a></li>
+                                    <ul id="navigation">                                        
+                                        <li><a href="#index">Inicio</a></li>
+                                        <li><a href="#about">Quienes Somos</a></li>
+                                        <li><a href="#products">Productos</a></li>                                        
+                                        <li><a href="#contact">Contáctenos</a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <div class="header-right-btn f-right d-none d-lg-block ml-30">
                             {% comment %} -------------------------------------Cambiar Ruta Login ----------------------------{% endcomment %}
-                                <a href="#" class="btn header-btn">Login</a>
-                            </div>
+                                <a href="#" class="btn header-btn">Iniciar Sesión</a>
+                            </div>    
                         </div>
                     </div>   
                     <!-- Mobile Menu -->
@@ -82,10 +82,10 @@
 </header>
 
 {% block content %}
-{% include 'english/index.html' %}
-{% include 'english/about.html' %}
-{% include 'english/products.html' %}
-{% include 'english/contact.html' %}
+{% include 'espanol/index_esp.html' %}
+{% include 'espanol/nosotros.html' %}
+{% include 'espanol/productos.html' %}
+{% include 'espanol/contacto.html' %}
 {% endblock content %}
 
 <footer>
@@ -105,7 +105,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Social Networks</h4>
+                                <h4>Redes Sociales</h4>
                                 <br>
                                 <ul class="header-social">    
                                     <li><h1><a href="#"><i class="fab fa-twitter"></i></a></h1></li>
