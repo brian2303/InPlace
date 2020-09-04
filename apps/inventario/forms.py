@@ -106,3 +106,50 @@ class UnidadMedidaForm(ModelForm):
             ),
         }
 
+# === Formulario para crear una compra ===
+
+class CompraInsumosForm(ModelForm):
+    
+    """definiendo unas clases para cada componente de mi formulario"""
+    def __init__(self,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = CompraInsumos
+        fields = '__all__'
+        widgets = {
+            'proveedor':Select(
+                attrs ={
+                    'class': 'form-control select2',
+                    'style': 'width: 100%',
+                }
+            ),
+            'fecha' : DateInput(
+                format = '%Y-%m-%d',
+                attrs ={
+                    'value': datetime.now().strftime('%Y-%m-%d'),
+                    'autocomplete':'off',
+                    'class':'form-control datetimepicker-input',
+                    'id':'fecha',
+                    'data-target': '#fecha',
+                    'data-toggle':'datetimepicker',
+                }
+            ),
+            'iva' : TextInput(
+                attrs = {
+                    'class':'form-control',
+                }
+            ),
+            'subtotal' : TextInput(
+                attrs = {
+                    'disabled':True,
+                    'class':'form-control'
+                }
+            ),
+            'total' : TextInput(
+                attrs = {
+                    'disabled':True,
+                    'class':'form-control'
+                }
+            )
+        }

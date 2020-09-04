@@ -84,19 +84,18 @@
     </aside>
 
     <div class="content-wrapper">
-    <!-- TITULO DE ENCABEZADO DE CADA PAGINA -->
+    {% comment %} <!-- TITULO DE ENCABEZADO DE CADA PAGINA -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h4>{{title}}</h4>
-                </div>
+                <hr>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
 
     <!-- CONTENIDO DE CADA PAGINA -->
-    <div class="content">
+    <div class="content mt-2">
+        <hr>
         {% block contentprincipal %}
         
         {% endblock contentprincipal %}

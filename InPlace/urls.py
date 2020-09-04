@@ -19,7 +19,7 @@ from apps.landing_page.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view()),
+    path('', IndexView.as_view(),name='index'),
     path('comercial/',include('apps.comercial.urls')),
     path('inventario/',include('apps.inventario.urls')),
     path('produccion/',include('apps.produccion.urls')),
