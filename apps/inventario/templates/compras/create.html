@@ -2,6 +2,12 @@
 {% load static %}
 
 {% block headlist %}
+
+    <!--libreria para realizar el autocomplete -->
+    <link rel="stylesheet" href="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.css' %} ">
+    <script src="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+
+    <!--librerias para obtener un buscador con filtrado-->
     <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2.min.css' %} ">
     <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %} ">
     <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %} "></script>
@@ -75,7 +81,9 @@
                             <div class="form-group">
                                 <label>Buscador de insumos</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar insumo..." autocomplete="off">
+                                    <input type="text" 
+                                        class="form-control" placeholder="Buscar insumo..." 
+                                        autocomplete="off" name="search">
                                     <span class="input-group-append">
                                         <button type="button" class="btn btn-danger btn-flat">
                                             <i class="fas fa-times"></i>
@@ -84,7 +92,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <table class="table table-bordered" id="table-list">
+                            <table class="table table-bordered" id="table-insumos">
                                 <thead>
                                     <tr>
                                         <th>Eliminar</th>
@@ -131,4 +139,3 @@
         </div>
     </div>
 {% endblock contentprincipal %}
-

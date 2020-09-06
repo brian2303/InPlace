@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-
+from django.forms import model_to_dict
 # ==== modelos para crear el crud de provedores ==== #
 
 """modelo de proveedor"""
@@ -40,6 +40,10 @@ class UnidadMedida(models.Model):
     nombre = models.CharField(max_length=25)
     abreviatura = models.CharField(max_length=10)
 
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
+
     def __str__(self):
         return self.nombre
     
@@ -58,6 +62,11 @@ class Insumos(models.Model):
         default='sin categoria',
         on_delete=models.SET_DEFAULT,
     )
+
+    def toJSON(self):
+        item = model_to_dict(self)
+        item['unidad_medida'] = self.unidad_medida.toJSON()
+        return item
 
     class Meta:
         db_table = 'insumos'
