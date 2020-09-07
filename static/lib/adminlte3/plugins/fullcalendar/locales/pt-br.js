@@ -7,7 +7,7 @@
     var ptBr = {
         code: "pt-br",
         buttonText: {
-            prev: "Anterior",
+            prev: "Previous",
             next: "Próximo",
             today: "Hoje",
             month: "Mês",

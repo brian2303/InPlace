@@ -47,20 +47,20 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-money-bill-wave"></i>
-                                Purchase details                              
+                                Datos de la compra                              
                             </h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Select date: </label>
+                                        <label>Seleccione la fecha: </label>
                                         {{form.fecha}}
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Provider:</label>
+                                        <label>Proveedor:</label>
                                         {{form.proveedor}}
                                     </div>
                                 </div>
@@ -74,15 +74,15 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-boxes"></i>
-                                Supplies detail                              
+                                Detalle de insumos                               
                             </h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Search supplies</label>
+                                <label>Buscador de insumos</label>
                                 <div class="input-group">
                                     <input type="text" 
-                                        class="form-control" placeholder="Search Supplies..." 
+                                        class="form-control" placeholder="Buscar insumo..." 
                                         autocomplete="off" name="search">
                                     <span class="input-group-append">
                                         <button type="button" class="btn btn-danger btn-flat">
@@ -95,12 +95,12 @@
                             <table class="table table-bordered" id="table-insumos">
                                 <thead>
                                     <tr>
-                                        <th>Delete</th>
-                                        <th>Supplie</th>
-                                        <th>Measurement Unit</th>
-                                        <th>Purchase price</th>
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
+                                        <th>Eliminar</th>
+                                        <th>Insumo</th>
+                                        <th>Unidad Medida</th>
+                                        <th>Precio de compra</th>
+                                        <th>Cantidad</th>
+                                        <th>subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-4">
                     <div class="form-group">
-                        <label>VAT:</label>
+                        <label>Iva:</label>
                         {{form.iva}}
                     </div>
                 </div>
@@ -132,8 +132,8 @@
         </div>
         <!--BOTON DE GUARDAR COMPRA-->
         <div class="card-footer d-flex justify-content-end">
-            <a class="btn btn-secondary" id="btn-new">
-                Register Purchase
+            <a class="btn btn-primary" id="btn-new">
+                Registrar Compra
                 <i class="fas fa-plus-circle"></i>
             </a>
         </div>

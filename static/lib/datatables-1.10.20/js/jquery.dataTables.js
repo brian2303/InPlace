@@ -11435,7 +11435,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Anterior"
+				"sPrevious": "Previous"
 			},
 	
 			/**
