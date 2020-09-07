@@ -26,6 +26,7 @@
 
 
 {% block contentprincipal %}
+<form method="POST" id="form-guardar-compra">
     <div class="card card-secondary">
         <!--ENCABEZADO DE TABLA-->
         <div class="card-header">
@@ -92,6 +93,13 @@
                                 </div>
                             </div>
                             <hr>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-danger btn-xs" id="btnBorrarDetalle">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Vaciar Lista
+                                </button>
+                            </div>
+                            <hr>
                             <table class="table table-bordered" id="table-insumos">
                                 <thead>
                                     <tr>
@@ -132,10 +140,12 @@
         </div>
         <!--BOTON DE GUARDAR COMPRA-->
         <div class="card-footer d-flex justify-content-end">
-            <a class="btn btn-primary" id="btn-new">
+            <input type="hidden" name="action" value="{{ action }}">
+            <button type="submit" class="btn btn-primary" style="color:white" id="btn-new">
                 Registrar Compra
                 <i class="fas fa-plus-circle"></i>
-            </a>
+            </button>
         </div>
     </div>
+</form>
 {% endblock contentprincipal %}

@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from apps.landing_page.views import IndexView
+from apps.landing_page.views import IndexView,IndexViewEnglish
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(),name='index'),
+    path('en/', IndexViewEnglish.as_view(),name='index_english'),
     path('comercial/',include('apps.comercial.urls')),
     path('inventario/',include('apps.inventario.urls')),
     path('produccion/',include('apps.produccion.urls')),

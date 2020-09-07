@@ -2,22 +2,30 @@ let tablaInsumos
 let compras = {
     items : {
         proveedor:'',
-        fecha:'',
+        fecha: '',
         subtotal:0.00,
         iva:0.0,
         total:0.00,
         insumos : []
     },
-    // calcularTotalFactura : function () {
-    //     $.each(this.items.insumos,function (pos,dict) {
-    //         dict.subtotal = dict.cantidad * dict.preciocompra
-    //     })
-    // },
+    calcularTotalFactura : function () {
+        let subtotal = 0
+        $.each(this.items.insumos,function (pos,dict) {
+            subtotal += dict.subtotal
+        })
+        this.items.subtotal = subtotal
+        $('input[name="subtotal"]').val(this.items.subtotal.toFixed(2))
+        this.items.iva = this.items.subtotal * 0.19
+        $('input[name="iva"]').val(this.items.iva.toFixed(2))
+        this.items.total = this.items.subtotal + this.items.iva
+        $('input[name="total"]').val(this.items.total.toFixed(2))
+    },
     add :function (item) {
         this.items.insumos.push(item)
         this.list()
     },
     list: function () {
+        this.calcularTotalFactura()
         tablaInsumos = $('#table-insumos').DataTable({
             responsive: true,
             autoWidth: false,
@@ -38,7 +46,7 @@ let compras = {
                     class:'text-center',
                     orderable:'false',
                     render: function (data,type,row) {
-                        return `<a class="btn btn-danger btn-xs"> 
+                        return `<a rel="remove" class="btn btn-danger btn-xs" style="color:white"> 
                                     <i class="fas fa-trash-alt"></i>
                                 </a>`
                     }
@@ -80,7 +88,7 @@ let compras = {
                 })
                 $(row).find('input[name="precio-compra"]').TouchSpin({
                     initval:100,
-                    max: 1000000000,
+                    max: 1000000,
                     stepinterval: 50,
                     prefix: '$'
                 })
@@ -102,17 +110,6 @@ $(function () {
         locale : 'es',
         //minDate : moment().format("YYYY-MM-DD"), 
         maxDate : moment().format("YYYY-MM-DD"),
-    });
-
-    //configurando la seleccion del iva
-    $("input[name='iva']").TouchSpin({
-        min: 0,
-        max: 19,
-        step: 1,
-        decimals: 1,
-        boostat: 5,
-        maxboostedstep: 10,
-        postfix: '%'
     });
     //Buscador de insumos
     $('input[name="search"]').autocomplete({
@@ -152,21 +149,76 @@ $(function () {
     })
 
     //guardando el estado cada vez que se cambien las unidades de un insumo
-    $("#table-insumos tbody").on('change keyup','input[name="unidades"]',function () {
-        let unidades =  parseInt($(this).val())
-        let tr = tablaInsumos.cell($(this).closest('td, li')).index()
-        let data = tablaInsumos.row(tr.row).node()
-        compras.items.insumos[tr.row].cantidad = unidades
-        compras.items.insumos[tr.row].subtotal = compras.items.insumos[tr.row].cantidad * compras.items.insumos[tr.row].preciocompra
-        $('td:eq(5)',tablaInsumos.row(tr.row).node()).html(`$ ${compras.items.insumos[tr.row].subtotal}`)
-    })
+    $("#table-insumos tbody")
+        .on('click','a[rel="remove"]',function () {
+            let tr = tablaInsumos.cell($(this).closest('td, li')).index()
+            compras.items.insumos.splice(tr.row,1)
+            compras.list()
+        })
+        .on('change keyup','input[name="unidades"]',function () {
+            let unidades =  parseInt($(this).val())
+            let tr = tablaInsumos.cell($(this).closest('td, li')).index()
+            compras.items.insumos[tr.row].cantidad = unidades
+            compras.items.insumos[tr.row].subtotal = compras.items.insumos[tr.row].cantidad * compras.items.insumos[tr.row].preciocompra
+            $('td:eq(5)',tablaInsumos.row(tr.row).node()).html(`$ ${compras.items.insumos[tr.row].subtotal}`)
+            compras.calcularTotalFactura()
+        })
     //guardando el estado cada vez que se cambie el precio de compra
     $("#table-insumos tbody").on('change keyup','input[name="precio-compra"]',function () {
-        let precioCompra = parseFloat($(this).val())
-        let tr = tablaInsumos.cell($(this).closest('td, li')).index()
-        let data = tablaInsumos.row(tr.row).node()
-        compras.items.insumos[tr.row].preciocompra = precioCompra
-        compras.items.insumos[tr.row].subtotal = compras.items.insumos[tr.row].cantidad * compras.items.insumos[tr.row].preciocompra
-        $('td:eq(5)',tablaInsumos.row(tr.row).node()).html(`$ ${compras.items.insumos[tr.row].subtotal}`)
+            let precioCompra = parseFloat($(this).val())
+            let tr = tablaInsumos.cell($(this).closest('td, li')).index()
+            compras.items.insumos[tr.row].preciocompra = precioCompra
+            compras.items.insumos[tr.row].subtotal = compras.items.insumos[tr.row].cantidad * compras.items.insumos[tr.row].preciocompra
+            $('td:eq(5)',tablaInsumos.row(tr.row).node()).html(`$ ${compras.items.insumos[tr.row].subtotal}`)
+            compras.calcularTotalFactura()
+    })
+    //borrando el detalle de insumos de manera completa.
+    $('#btnBorrarDetalle').on('click',function () {
+            if(compras.items.insumos.length === 0)return false
+            Swal.fire({
+                title: 'Estas seguro de eliminar el detalle?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si!',
+                cancelButtonText: 'No!'
+            }).then((result) => {
+                if (result.value) {
+                    compras.items.insumos = []
+                    compras.list()
+                }
+            })
+    })
+
+    // enviar los datos a la vista correspondiente
+    const URL = window.location.pathname
+    $('#form-guardar-compra').on('submit',function (e) {
+        e.preventDefault()
+        compras.items.proveedor = $('select[name="proveedor"]').val()
+        compras.items.fecha = $('input[name="fecha"]').val()
+        $.ajax({
+            url : URL,
+            type: 'POST',
+            data : {
+                'action': $('input[name="action"]').val(),
+                'compras': JSON.stringify(compras.items)
+            },
+            dataType : 'JSON'
+        }).done(function (data) {
+            //respuesta despues de guardar la compra con su detalle
+            Swal.fire({
+                title: 'Registro Guardado exitosamente',
+                text: "Listo !!",
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK!'
+            }).then((result) => {
+                if (result.value) {
+                    //window.location.href = "/inventario/proveedor/lista"
+                }
+            })
+        })
     })
 })

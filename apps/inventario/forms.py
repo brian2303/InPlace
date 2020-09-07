@@ -137,6 +137,7 @@ class CompraInsumosForm(ModelForm):
             ),
             'iva' : TextInput(
                 attrs = {
+                    'disabled':True,
                     'class':'form-control',
                 }
             ),

@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 class IndexView(TemplateView):
     template_name = "espanol/contenido.html"
 
-# class IndexView(TemplateView):
-#     template_name = "english/content.html"
+class IndexViewEnglish(TemplateView):
+    template_name = "english/content.html"
 
 # Create your views here.

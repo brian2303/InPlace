@@ -6,6 +6,7 @@ from apps.inventario.forms import CompraInsumosForm
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.forms import model_to_dict
+import json
 class CompraInsumosCreateView(CreateView):
     model = CompraInsumos
     form_class = CompraInsumosForm
@@ -28,6 +29,24 @@ class CompraInsumosCreateView(CreateView):
                     item = insumo.toJSON()
                     item['value'] = insumo.nombre
                     data.append(item)
+            elif action == 'add':
+                dict_compra = json.loads(request.POST['compras'])
+                compra = CompraInsumos()
+                compra.proveedor_id = dict_compra['proveedor']
+                compra.fecha = dict_compra['fecha']
+                compra.subtotal = float(dict_compra['subtotal'])
+                compra.iva = float(dict_compra['iva'])
+                compra.total = float(dict_compra['total'])
+                compra.save()
+                for insumo in dict_compra['insumos']:
+                    detalle = DetalleCompra()
+                    detalle.insumo_id = insumo['id']
+                    detalle.compra_id = compra.pk
+                    detalle.precio_compra = insumo['preciocompra']
+                    detalle.cantidad = insumo['cantidad']
+                    detalle.subtotal = insumo['subtotal']
+                    detalle.save()
+                data['success'] = 'Registro Exitoso'
             else:
                 data['error'] = 'No se ha ingresado ninguna opcion'
         except Exception as e:

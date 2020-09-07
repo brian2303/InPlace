@@ -8,8 +8,6 @@
     <title> InPlace </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 	<!-- CSS here -->
 	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %} ">
@@ -98,8 +96,19 @@
                         <div class="single-footer-caption mb-50">
                             <!-- logo -->
                             <div class="footer-logo">
-                                <a href="english/index.html"><img src="{% static 'assets/img/logo/logo2_footer.png' %} " alt=""></a>
+                                <img src="{% static 'assets/img/logo/logo2_footer.png' %} " alt="">
                             </div>
+                        </div>
+                        <!--traduccion-->
+                        <div class="single-footer-caption mb-50">
+                            <a href="{% url 'index_english' %} " style="margin:5px; font-size:15px" >
+                                EN
+                                <img src="{% static 'img/eeuu_flag.png' %} " alt="">
+                            </a>
+                            <a href="{% url 'index' %} " style="margin:5px; font-size:15px">
+                                ES
+                                <img src="{% static 'img/colombia_flag.png' %} " alt="">
+                            </a>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">

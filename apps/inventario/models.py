@@ -89,7 +89,7 @@ class CompraInsumos(models.Model):
         verbose_name_plural = "compra de insumos"
 
     def __str__(self):
-        return self.fecha
+        return str(self.fecha) 
 
 
 class DetalleCompra(models.Model):
