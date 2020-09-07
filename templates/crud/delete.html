@@ -5,9 +5,15 @@
 <form id="form_eliminar" method="POST">
     {% csrf_token %}
     <div class="jumbotron">
+<<<<<<< HEAD
         <h1>Esta seguro de eliminar al registro {{object.pk}} ?</h1>
         <button class="btn btn-outline-danger" type="submit">Si, Eliminar</button>
         <a class="btn btn-info" href="{{ url_list }}">Cancelar</a>
+=======
+        <h1>Are you sure you want to delete the registry {{object.pk}} ?</h1>
+        <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+        <a class="btn btn-info" href="{{ url_list }}">Cancel</a>
+>>>>>>> 2324001c6f8ebedc41c3663ecdd77d647fe9fb8b
     </div>
 </form>
 <script>
@@ -16,11 +22,11 @@
     function redireccion (obj){
         if(!obj.hasOwnProperty('error')){
             Swal.fire({
-            title: 'Perfecto !',
-            text: "Registro borrado exitosamente",
+            title: 'Perfect !',
+            text: "record successfully deleted",
             icon: 'success',
             confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Ok!'
             })
             .then((result) => {
                 if (result.value) {
@@ -31,7 +37,7 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Imposible borrar un registro asociado!',
+                text: 'Unable to delete an associated record!',
             })
             .then(result =>{
                 location.href = '{{ url_list }}'

@@ -20,7 +20,7 @@ class UnidadMedidaListView(ListView):
     # CONTEXTO A ENVIAR
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de unidades de medida'
+        context["title"] = 'List of Measurement Units'
         context["url_list"] = reverse_lazy('unidadmedida_lista')
         context['url_create'] = reverse_lazy('unidadmedida_crear')
         return context
@@ -52,7 +52,7 @@ class UnidadMedidaDeleteView(DeleteView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de unidades de medida'
+        context["title"] = 'List of Measurement Units'
         context["url_list"] = reverse_lazy('unidadmedida_lista')
         return context
     

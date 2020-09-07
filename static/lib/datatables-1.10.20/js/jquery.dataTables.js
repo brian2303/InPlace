@@ -11412,7 +11412,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Siguiente",
+				"sNext": "Next",
 	
 	
 				/**
@@ -11435,7 +11435,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Anterior"
+				"sPrevious": "Previous"
 			},
 	
 			/**
@@ -11458,7 +11458,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "Ningún dato disponible en esta tabla",
+			"sEmptyTable": "No data available in table",
 	
 	
 			/**
@@ -11490,7 +11490,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			"sInfo": "Showing _START_ to _END_ of _TOTAL_ records",
 	
 	
 			/**
@@ -11511,7 +11511,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"sInfoEmpty": "No entries to show",
 	
 	
 			/**
@@ -11533,7 +11533,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+			"sInfoFiltered": "(filtering from _MAX_ records)",
 	
 	
 			/**
@@ -11651,7 +11651,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Mostrar _MENU_ registros",
+			"sLengthMenu": "Show _MENU_ entries",
 	
 	
 			/**
@@ -11675,7 +11675,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "Cargando...",
+			"sLoadingRecords": "Loading...",
 	
 	
 			/**
@@ -11696,7 +11696,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "Procesando...",
+			"sProcessing": "Processing...",
 	
 	
 			/**
@@ -11731,7 +11731,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Buscar:",
+			"sSearch": "Search:",
 	
 	
 			/**
@@ -11789,7 +11789,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No se encontraron resultados"
+			"sZeroRecords": "No records to display"
 		},
 	
 	

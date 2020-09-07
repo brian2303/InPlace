@@ -19,7 +19,7 @@ class InsumosListView(ListView):
     # CONTEXTO A ENVIAR
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de Insumos'
+        context["title"] = 'Supplies List'
         context["url_list"] = reverse_lazy('insumo_lista')
         context['url_create'] = reverse_lazy('insumo_crear')
         return context
@@ -51,7 +51,7 @@ class InsumosDeleteView(DeleteView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de Insumos'
+        context["title"] = 'Supplies List'
         context["url_list"] = reverse_lazy('insumo_lista')
         return context
     

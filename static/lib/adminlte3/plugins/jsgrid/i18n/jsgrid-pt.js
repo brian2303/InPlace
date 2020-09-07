@@ -5,7 +5,7 @@
             noDataContent: "Não encontrado",
             deleteConfirm: "Você tem certeza que deseja remover este item?",
             pagerFormat: "Páginas: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} de {pageCount}",
-            pagePrevText: "Anterior",
+            pagePrevText: "Previous",
             pageNextText: "Seguinte",
             pageFirstText: "Primeira",
             pageLastText: "Última",
