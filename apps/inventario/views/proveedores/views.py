@@ -38,7 +38,7 @@ class ProveedorListView(ListView):
     # CONTEXTO A ENVIAR
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de proveedores'
+        context["title"] = 'Providers List'
         context["url_list"] = reverse_lazy('proveedor_lista')
         context['url_create'] = reverse_lazy('proveedor_crear')
         return context
@@ -54,7 +54,7 @@ class ProveedorCreateView(CreateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Registrar proveedor'
+        context['title'] = 'Register Provider'
         if 'form' not in context:
             context['form'] = self.form_class(self.request.GET)
         if 'form2' not in context:
@@ -88,7 +88,7 @@ class ProveedorUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Editar Proveedor'
+        context['title'] = 'Edit Provider'
         context['id_proveedor'] = context['object'].pk
         telefonos_proveedor = context['object'].telefonos.all()
         context['celular'] = telefonos_proveedor[0].numero_telefono
@@ -129,7 +129,7 @@ class ProveedorDeleteView(DeleteView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de proveedores'
+        context["title"] = 'Providers List'
         context["url_list"] = reverse_lazy('proveedor_lista')
         return context
     

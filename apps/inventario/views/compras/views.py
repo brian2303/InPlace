@@ -56,7 +56,7 @@ class CompraInsumosCreateView(CreateView):
     """retorna este contexto cuando se pida la vista por get"""
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Registro de compra'
+        context['title'] = 'Register Purchase'
         context['entity']  = 'Compras'
         context['list_url'] = self.success_url
         context['action'] = 'add'
