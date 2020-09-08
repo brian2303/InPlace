@@ -4,7 +4,6 @@
     <tr>
     <th scope="col" style="width:10%;">Id</th>
     <th scope="col" style="width:15%;">Nombre</th>
-    <th scope="col" style="width:10%;">Detalles</th>
     <th scope="col" style="width:10%;">Opciones</th>
 </tr>
 {% endblock columns %}
@@ -13,16 +12,7 @@
     {% for categoria in object_list %}
         <tr>
             <td>{{categoria.id}}</td>
-            <td>{{categoria.nombre_categoria}}</td>
-            {% comment %} Modal con detalles de Productos {% endcomment %}
-            <td>
-            <button 
-                value = "{{categoria.pk}}"
-                id = "btn-categorias"
-                class="btn btn-outline-primary btn-xs btn-block"
-                data-toggle="modal" data-target="#modaldetallesProductos">
-                Detalles
-            </button>
+            <td>{{categoria.nombre_categoria}}</td>            
             <td>
                 <a href="{% url 'categoria_editar' categoria.pk %}" class="btn btn-warning btn-sm">
                     <i class="fas fa-edit"></i>
