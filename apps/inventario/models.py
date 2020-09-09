@@ -8,6 +8,10 @@ class Proveedor(models.Model):
     nombre=models.CharField(max_length=25)
     ciudad=models.CharField(max_length=25)
     direccion=models.CharField(max_length=25)
+
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
     
     class Meta:
         verbose_name='proveedor'
@@ -83,6 +87,16 @@ class CompraInsumos(models.Model):
     iva = models.DecimalField(default=0.0,max_digits=9,decimal_places=2)
     total = models.DecimalField(default=0.0,max_digits=9,decimal_places=2)
 
+    def toJSON(self):
+        item = model_to_dict(self)
+        item['proveedor'] = self.proveedor.toJSON()
+        item['subtotal'] = format(self.subtotal, '.2f')
+        item['iva'] = format(self.iva, '.2f')
+        item['total'] = format(self.total, '.2f')
+        item['fecha'] = self.fecha.strftime('%Y-%m-%d')
+        item['detalle'] = [detalle.toJSON()  for detalle in self.detallecompra_set.all()]
+        return item
+
     class Meta:
         db_table = 'compra_insumos'
         verbose_name = "compra insumo"
@@ -98,6 +112,13 @@ class DetalleCompra(models.Model):
     precio_compra = models.DecimalField(default=0.0, max_digits=9, decimal_places=2)
     cantidad = models.IntegerField(default=0)
     subtotal = models.DecimalField(default=0.0,max_digits=9, decimal_places=2)
+
+    def toJSON(self):
+        item = model_to_dict(self, exclude=['compra'])
+        item['insumo'] = self.insumo.toJSON()
+        item['precio_compra'] = format(self.precio_compra, '.2f')
+        item['subtotal'] = format(self.subtotal, '.2f')
+        return item
     class Meta:
         db_table = 'detalle_compra'
         verbose_name = 'detalle compra'

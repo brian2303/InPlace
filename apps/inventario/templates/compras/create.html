@@ -86,7 +86,7 @@
                                         class="form-control" placeholder="Buscar insumo..." 
                                         autocomplete="off" name="search">
                                     <span class="input-group-append">
-                                        <button type="button" class="btn btn-danger btn-flat">
+                                        <button id="limpiarBusqueda" type="button" class="btn btn-danger btn-flat">
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </span>
@@ -94,10 +94,10 @@
                             </div>
                             <hr>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-danger btn-xs" id="btnBorrarDetalle">
+                                <a class="btn btn-danger btn-xs" style="color:white" id="btnBorrarDetalle">
                                     <i class="fas fa-trash-alt"></i>
                                     Vaciar Lista
-                                </button>
+                                </a>
                             </div>
                             <hr>
                             <table class="table table-bordered" id="table-insumos">

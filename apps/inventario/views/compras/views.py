@@ -7,10 +7,12 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.forms import model_to_dict
 import json
+from django.db import transaction
 class CompraInsumosCreateView(CreateView):
+
     model = CompraInsumos
     form_class = CompraInsumosForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('compra_crear')
     template_name = "compras/create.html"
 
     @method_decorator(csrf_exempt)
@@ -29,24 +31,24 @@ class CompraInsumosCreateView(CreateView):
                     item = insumo.toJSON()
                     item['value'] = insumo.nombre
                     data.append(item)
-            elif action == 'add':
-                dict_compra = json.loads(request.POST['compras'])
-                compra = CompraInsumos()
-                compra.proveedor_id = dict_compra['proveedor']
-                compra.fecha = dict_compra['fecha']
-                compra.subtotal = float(dict_compra['subtotal'])
-                compra.iva = float(dict_compra['iva'])
-                compra.total = float(dict_compra['total'])
-                compra.save()
-                for insumo in dict_compra['insumos']:
-                    detalle = DetalleCompra()
-                    detalle.insumo_id = insumo['id']
-                    detalle.compra_id = compra.pk
-                    detalle.precio_compra = insumo['preciocompra']
-                    detalle.cantidad = insumo['cantidad']
-                    detalle.subtotal = insumo['subtotal']
-                    detalle.save()
-                data['success'] = 'Registro Exitoso'
+            elif action == 'add': 
+                with transaction.atomic():
+                    dict_compra = json.loads(request.POST['compras'])
+                    compra = CompraInsumos()
+                    compra.proveedor_id = dict_compra['proveedor']
+                    compra.fecha = dict_compra['fecha']
+                    compra.subtotal = float(dict_compra['subtotal'])
+                    compra.iva = float(dict_compra['iva'])
+                    compra.total = float(dict_compra['total'])
+                    compra.save()
+                    for insumo in dict_compra['insumos']:
+                        detalle = DetalleCompra()
+                        detalle.insumo_id = insumo['id']
+                        detalle.compra_id = compra.pk
+                        detalle.precio_compra = insumo['preciocompra']
+                        detalle.cantidad = insumo['cantidad']
+                        detalle.subtotal = insumo['subtotal']
+                        detalle.save()
             else:
                 data['error'] = 'No se ha ingresado ninguna opcion'
         except Exception as e:
@@ -61,3 +63,30 @@ class CompraInsumosCreateView(CreateView):
         context['list_url'] = self.success_url
         context['action'] = 'add'
         return context
+
+
+class CompraListView(ListView):
+    model = CompraInsumos
+    template_name = "compras/list.html"
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self,request,*args,**kwgars):
+        try:
+            action = request.POST['action']
+            if action == 'searchdata':
+                data = []
+                for compra in CompraInsumos.objects.all():
+                    data.append(compra.toJSON())
+        except Exception as e:
+            pass
+        return JsonResponse(data,safe=False)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Listado de compras'
+        context['url_create'] = reverse_lazy('compra_crear')
+        return context
+    

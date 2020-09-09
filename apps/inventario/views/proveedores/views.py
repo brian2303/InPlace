@@ -7,7 +7,7 @@ import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
-
+from django.db import transaction
 # importaciones propias del proyecto
 from apps.inventario.models import Proveedor,TelefonoProveedor
 from apps.inventario.forms import ProveedorForm,TelefonoProveedorForm
@@ -69,11 +69,12 @@ class ProveedorCreateView(CreateView):
         if request.POST['telefono_opcional'] not in '':
             telefonos.append(request.POST['telefono_opcional'])
         if form.is_valid():
-            proveedor = form.save()
-            for telefono in telefonos:
-                proveedor.telefonos.create(numero_telefono=telefono)
-            proveedor.save()
-            return redirect('proveedor_lista')
+            with transaction.atomic():
+                proveedor = form.save()
+                for telefono in telefonos:
+                    proveedor.telefonos.create(numero_telefono=telefono)
+                proveedor.save()
+                return redirect('proveedor_lista')
         else:
             return redirect('proveedor_crear')
 

@@ -1,4 +1,5 @@
 let tablaInsumos
+//objeto literal que se envia a la vista de django para guardar registro de compra con su detalle
 let compras = {
     items : {
         proveedor:'',
@@ -98,6 +99,8 @@ let compras = {
     } 
 }
 $(function () {
+    compras.list()
+
     // aplicandole la libreria select2 al campo de proveedor
     $('.select2').select2({
         theme :'bootstrap4',
@@ -172,7 +175,7 @@ $(function () {
             $('td:eq(5)',tablaInsumos.row(tr.row).node()).html(`$ ${compras.items.insumos[tr.row].subtotal}`)
             compras.calcularTotalFactura()
     })
-    //borrando el detalle de insumos de manera completa.
+    //borrando la lista de insumos completa.
     $('#btnBorrarDetalle').on('click',function () {
             if(compras.items.insumos.length === 0)return false
             Swal.fire({
@@ -191,10 +194,23 @@ $(function () {
             })
     })
 
-    // enviar los datos a la vista correspondiente
+    //boton de limpiar busqueda de detalle de insumos
+    $('#limpiarBusqueda').on('click',function () {
+        $('input[name="search"]').val('').focus()
+    })
+
+    // enviar los datos a la vista django (/inventario/compra/crear)
     const URL = window.location.pathname
     $('#form-guardar-compra').on('submit',function (e) {
         e.preventDefault()
+        if(compras.items.insumos.length === 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes agregar almenos un insumo al detalle!',
+            })
+            return false
+        }
         compras.items.proveedor = $('select[name="proveedor"]').val()
         compras.items.fecha = $('input[name="fecha"]').val()
         $.ajax({
@@ -216,7 +232,7 @@ $(function () {
                 confirmButtonText: 'OK!'
             }).then((result) => {
                 if (result.value) {
-                    //window.location.href = "/inventario/proveedor/lista"
+                    window.location.href = "/inventario/compra/lista"
                 }
             })
         })
