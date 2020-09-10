@@ -3,11 +3,11 @@
 <!--columnas de la tabla de proveedores-->
 {% block columns %}
     <tr>
-        <th scope="col" style="width:25%;">Nombre</th>
+        <th scope="col" style="width:30%;">Nombre</th>
         <th scope="col" style="width:25%;">ciudad</th>
-        <th scope="col" style="width:25%;">Direccion</th>
-        <th scope="col" style="width:5%;">Detalles</th>
-        <th scope="col" style="width:20%;">Opciones</th>
+        <th scope="col" style="width:30%;">Direccion</th>
+        <th scope="col" style="width:5%;">Telefonos</th>
+        <th scope="col" style="width:10%;">Opciones</th>
     </tr>
 {% endblock columns %}
 
@@ -18,7 +18,7 @@
             <td>{{proveedor.nombre}}</td>
             <td>{{proveedor.ciudad}}</td>
             <td>{{proveedor.direccion}}</td>
-            <td>
+            <td class="text-center">
                 <button 
                     value = "{{proveedor.pk}}"
                     id = "btn-telefonos"
@@ -27,13 +27,13 @@
                     <i class="fas fa-phone"></i>
                 </button>
             </td>
-            <td>
+            <td class="text-center">
                 <a  href="{% url 'proveedor_editar' proveedor.pk %}" 
-                    class="btn btn-warning btn-sm">
+                    class="btn btn-warning btn-xs">
                     <i class="fas fa-edit"></i>
                 </a>
                 <a  href=" {% url 'proveedor_eliminar' proveedor.pk %}"  
-                    class="btn btn-danger btn-sm">
+                    class="btn btn-danger btn-xs">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -73,7 +73,7 @@
         listaTelefonos.forEach(tel => {
             let tr = document.createElement("tr")
             let tdId = document.createElement("td")
-            tdId.textContent = tel.id
+            tdId.innerHTML = '<i class="fas fa-phone"></i>'
             let tdTelefono = document.createElement("td")
             tdTelefono.textContent = tel.numero_telefono
             tr.appendChild(tdId)
@@ -85,39 +85,36 @@
 
 <!-- MODAL PARA MOSTRAR TELEFONOS -->
 <div class="modal" id="modaltelefono">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
 
             <!-- ENCABEZADO DEL MODAL -->
             <div class="modal-header">
-            <h4 class="modal-title">Telefonos</h4>
+            <h4 class="modal-title" style = "font-family:arial,helvética;">
+                <i class="fas fa-address-book"></i>
+                Lista de telefonos
+            </h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- CUERPO DEL MODAL -->
             <div class="modal-body">
-            <div class="row">
-                <div class="col">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Nro</th>
-                            <th>Telefono</th>
-                        </tr>
-                        </thead>
-                        <tbody id='body-telefonos'>
-                            
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover table-bordered table-reponsive">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th><i class="fas fa-list-ol"></i></th>
+                                <th>Telefono</th>
+                            </tr>
+                            </thead>
+                            <tbody id='body-telefonos'>
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            </div>
-
-            <!-- PIE DE PAGINA DEL MODAL -->
-            <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-            </div>
-
         </div>
     </div>
 </div>

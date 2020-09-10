@@ -22,7 +22,8 @@ urlpatterns = [
     path('insumo/eliminar/<int:pk>',InsumosDeleteView.as_view(),name='insumo_eliminar'),
     
     #compra
-    path('compra/lista',CompraListView.as_view(),name='compra_lista'),
+    path('compra/lista',CompraInsumosListView.as_view(),name='compra_lista'),
     path('compra/crear',CompraInsumosCreateView.as_view(),name='compra_crear'),
-
+    path('compra/editar/<int:pk>',CompraInsumosUpdateView.as_view(),name='compra_eliminar'),
+    path('compra/eliminar/<int:pk>',CompraInsumosDeleteView.as_view(),name='compra_eliminar'),
 ]

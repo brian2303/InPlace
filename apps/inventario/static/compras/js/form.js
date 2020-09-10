@@ -109,7 +109,7 @@ $(function () {
     //configuracion para que salga calendario.
     $('#fecha').datetimepicker({
         format:'YYYY-MM-DD',
-        date : moment().format("YYYY-MM-DD"),
+        date : $('#fecha').val(),
         locale : 'es',
         //minDate : moment().format("YYYY-MM-DD"), 
         maxDate : moment().format("YYYY-MM-DD"),

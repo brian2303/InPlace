@@ -127,7 +127,6 @@ class CompraInsumosForm(ModelForm):
             'fecha' : DateInput(
                 format = '%Y-%m-%d',
                 attrs ={
-                    'value': datetime.now().strftime('%Y-%m-%d'),
                     'autocomplete':'off',
                     'class':'form-control datetimepicker-input',
                     'id':'fecha',

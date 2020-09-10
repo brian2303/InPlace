@@ -81,7 +81,7 @@ class Insumos(models.Model):
 
 class CompraInsumos(models.Model):
 
-    proveedor = models.ForeignKey(Proveedor,on_delete=models.CASCADE) 
+    proveedor = models.ForeignKey(Proveedor,on_delete=models.DO_NOTHING) 
     fecha = models.DateField(default=datetime.now)
     subtotal = models.DecimalField(default=0.0,max_digits=9,decimal_places=2)
     iva = models.DecimalField(default=0.0,max_digits=9,decimal_places=2)

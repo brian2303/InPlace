@@ -37,9 +37,18 @@ $(function () {
                 orderable: false,
                 render: function (data, type, row) {
                     let buttons = `
-                        <a id="detalleCompra" data-toggle="modal" data-target="#modalDetalle" class="btn btn-info btn-xs">
+                        <a style="color:white" id="detalleCompra" data-toggle="modal" data-target="#modalDetalle" class="btn btn-info btn-xs">
                             <i class="fas fa-search"></i>
-                        </a>`;
+                        </a>`
+                        buttons += `
+                        <a href="/inventario/compra/eliminar/${row.id}" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash"></i>
+                        </a>`
+                        buttons += `
+                        <a style="color:white" href="/inventario/compra/editar/${row.id}" class="btn btn-warning btn-xs">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        `
                     return buttons;
                 }
             },

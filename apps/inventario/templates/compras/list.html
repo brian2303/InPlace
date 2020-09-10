@@ -53,16 +53,19 @@
     </div>
     {% block modal %}
         <div class="modal" id="modalDetalle">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Detalle Compra</h4>
+                        <h4 class="modal-title">
+                            <i class="fas fa-dolly-flatbed"></i>
+                            Detalle Compra
+                        </h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <table class="table">
-                            <thead>
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
                                 <tr>
                                     <th scope="col">Insumo</th>
                                     <th scope="col">Precio Compra</th>

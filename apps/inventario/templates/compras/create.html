@@ -36,6 +36,7 @@
                     {{title}}
                 {% else %}
                     <i class="fas fa-edit"></i>
+                    {{title}}
                 {% endif %}
             </h3>
         </div>
@@ -62,6 +63,9 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Proveedor:</label>
+                                        <a class="ml-1" href="{% url 'proveedor_crear' %} ">
+                                            <i class="fas fa-user-plus"></i>
+                                        </a>
                                         {{form.proveedor}}
                                     </div>
                                 </div>
@@ -148,4 +152,10 @@
         </div>
     </div>
 </form>
+<script>
+    {% if action == 'edit' %}
+        compras.items.insumos = {{ detalle | safe }}
+        compras.list()
+    {% endif %}
+</script>
 {% endblock contentprincipal %}

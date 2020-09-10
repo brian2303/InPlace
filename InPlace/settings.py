@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.comercial',
     'apps.usuarios',
     'apps.landing_page',
+    #librerias
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
