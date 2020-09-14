@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.comercial',
     'apps.usuarios',
     'apps.landing_page',
+    'apps.login',
     #librerias
     'widget_tweaks',
 ]
@@ -136,3 +137,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+AUTH_USER_MODEL = 'usuarios.User'
+
+LOGIN_REDIRECT_URL = '/dashboard/'
+
+LOGIN_URL = '/login/'

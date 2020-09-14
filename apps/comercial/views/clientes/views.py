@@ -6,13 +6,13 @@ import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 # propias
 from apps.comercial.models import Cliente,TelefonoCliente
 from apps.comercial.forms import ClienteForm,TelefonoClienteForm
 
 """Listar clientes"""
-class ClienteListView(ListView):
+class ClienteListView(LoginRequiredMixin,ListView):
     model = Cliente
     template_name = "clientes/list.html"
 
@@ -43,7 +43,7 @@ class ClienteListView(ListView):
 
 
 """crear un cliente"""
-class ClienteCreateView(CreateView):
+class ClienteCreateView(LoginRequiredMixin,CreateView):
     model = Cliente
     template_name = "clientes/create.html"
     form_class = ClienteForm
@@ -77,7 +77,7 @@ class ClienteCreateView(CreateView):
         
 
 """modificar cliente"""
-class ClienteUpdateView(UpdateView):
+class ClienteUpdateView(LoginRequiredMixin,UpdateView):
     model = Cliente
     template_name = "clientes/create.html"
     form_class = ClienteForm
@@ -119,7 +119,7 @@ class ClienteUpdateView(UpdateView):
 
 
 """eliminar un cliente"""
-class ClienteDeleteView(DeleteView):
+class ClienteDeleteView(LoginRequiredMixin,DeleteView):
     model = Cliente
     template_name = "clientes/delete.html"
     success_url = reverse_lazy('clientes_lista')

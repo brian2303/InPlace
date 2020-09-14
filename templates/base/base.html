@@ -66,17 +66,17 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- NOMBRE DE SISTEMA Y ESPACIO PARA LOGO -->
     <div class="brand-link">
-        <!-- <img src="" alt="">  El logo iria aca -->
+        <img class="ml-md-1" style="width:45px; border-radius:50%" src="{% static '/img/logo2.png' %} " alt=""> 
         <span class="brand-text font-weight-light">InPlace</span>
     </div>
     <div class="sidebar">
         <!-- NOMBRE DE USUARIO Y IMAGEN OPCIONAL -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <!-- <img src="" class="img-circle elevation-2" alt="Img opc"> -->
+            <img src="{% static '/login/img/user.png' %} " class="img-circle elevation-2" alt="Img opc">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Nombre Usuario</a>
+            <a href="{% url 'dashboard' %} " class="d-block">{{request.user.username|capfirst}}</a>
         </div>
         </div>
             {% include 'base/navegacion.html' %}
@@ -105,7 +105,7 @@
     <!-- CERRAR SESIÓN -->
     <aside class="control-sidebar control-sidebar-dark" style="height: 60px;">
         <div class="p-3">
-            <a href="">Cerrar Sesión</a>
+            <a href="{% url 'logout' %} ">Cerrar Sesión</a>
         </div>
     </aside>
 

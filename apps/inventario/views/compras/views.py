@@ -8,7 +8,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms import model_to_dict
 import json
 from django.db import transaction
-class CompraInsumosCreateView(CreateView):
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class CompraInsumosCreateView(LoginRequiredMixin,CreateView):
 
     model = CompraInsumos
     form_class = CompraInsumosForm
@@ -64,7 +66,7 @@ class CompraInsumosCreateView(CreateView):
         context['action'] = 'add'
         return context
 
-class CompraInsumosUpdateView(UpdateView):
+class CompraInsumosUpdateView(LoginRequiredMixin,UpdateView):
 
     model = CompraInsumos
     form_class = CompraInsumosForm
@@ -137,7 +139,7 @@ class CompraInsumosUpdateView(UpdateView):
         return context
 
 
-class CompraInsumosListView(ListView):
+class CompraInsumosListView(LoginRequiredMixin,ListView):
     model = CompraInsumos
     template_name = "compras/list.html"
 
@@ -163,7 +165,7 @@ class CompraInsumosListView(ListView):
         return context
     
 
-class CompraInsumosDeleteView(DeleteView):
+class CompraInsumosDeleteView(LoginRequiredMixin,DeleteView):
     model = CompraInsumos
     template_name = 'compras/delete.html'
     success_url = reverse_lazy('compra_lista')

@@ -10,9 +10,9 @@ from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 # modelo de clientes
 from apps.inventario.models import Insumos
 from apps.inventario.forms import InsumosForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 """Listar insumos"""
-class InsumosListView(ListView):
+class InsumosListView(LoginRequiredMixin,ListView):
     model = Insumos
     template_name = "insumos/list.html"
 
@@ -25,7 +25,7 @@ class InsumosListView(ListView):
         return context
 
 """crear un insumo"""
-class InsumosCreateView(CreateView):
+class InsumosCreateView(LoginRequiredMixin,CreateView):
     model = Insumos
     template_name = "insumos/create.html"
     form_class = InsumosForm
@@ -33,14 +33,14 @@ class InsumosCreateView(CreateView):
     
 
 """modificar un insumo"""
-class InsumosUpdateView(UpdateView):
+class InsumosUpdateView(LoginRequiredMixin,UpdateView):
     model = Insumos
     template_name = "insumos/create.html"
     form_class = InsumosForm   
     success_url = reverse_lazy('insumo_lista')
 
 """eliminar un insumo"""
-class InsumosDeleteView(DeleteView):
+class InsumosDeleteView(LoginRequiredMixin,DeleteView):
     model = Insumos
     template_name = "insumos/delete.html"
     success_url = reverse_lazy('insumo_lista')

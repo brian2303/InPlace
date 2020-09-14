@@ -11,10 +11,10 @@ from django.db import transaction
 # importaciones propias del proyecto
 from apps.inventario.models import Proveedor,TelefonoProveedor
 from apps.inventario.forms import ProveedorForm,TelefonoProveedorForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 """Listar proveedores"""
-class ProveedorListView(ListView):
+class ProveedorListView(LoginRequiredMixin,ListView):
     model = Proveedor
     template_name = "proveedor/list.html"
 
@@ -45,7 +45,7 @@ class ProveedorListView(ListView):
 
 
 """crear proveedor"""
-class ProveedorCreateView(CreateView):
+class ProveedorCreateView(LoginRequiredMixin,CreateView):
     model = Proveedor
     template_name = "proveedor/create.html"
     form_class = ProveedorForm
@@ -80,7 +80,7 @@ class ProveedorCreateView(CreateView):
 
 
 """modificar proveedor"""
-class ProveedorUpdateView(UpdateView):
+class ProveedorUpdateView(LoginRequiredMixin,UpdateView):
     model = Proveedor
     template_name = "proveedor/create.html"
     form_class = ProveedorForm
@@ -119,7 +119,7 @@ class ProveedorUpdateView(UpdateView):
             return redirect('proveedor_crear')
 
 """eliminar un proveedor"""
-class ProveedorDeleteView(DeleteView):
+class ProveedorDeleteView(LoginRequiredMixin,DeleteView):
     model = Proveedor
     template_name = "proveedor/delete.html"
     success_url = reverse_lazy('proveedor_lista')

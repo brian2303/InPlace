@@ -7,13 +7,13 @@ import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 # modelo de transportadoras
 from apps.produccion.models import Productos, CategoriaProductos
 from apps.produccion.forms import ProductosForm
 
 """Listar Productos"""
-class ProductosListView(ListView):
+class ProductosListView(LoginRequiredMixin,ListView):
     model = Productos
     template_name = "productos/list.html"
 
@@ -26,21 +26,21 @@ class ProductosListView(ListView):
         return context
 
 """crear un producto"""
-class ProductosCreateView(CreateView):
+class ProductosCreateView(LoginRequiredMixin,CreateView):
     model = Productos
     template_name = "productos/create.html"
     form_class = ProductosForm
     success_url = reverse_lazy('productos_lista')
 
 """modificar un producto"""
-class ProductosUpdateView(UpdateView):
+class ProductosUpdateView(LoginRequiredMixin,UpdateView):
     model = Productos
     template_name = "productos/create.html"
     form_class = ProductosForm    
     success_url = reverse_lazy('productos_lista')
 
 """eliminar un producto"""
-class ProductosDeleteView(DeleteView):
+class ProductosDeleteView(LoginRequiredMixin,DeleteView):
     model = Productos
     template_name = "productos/delete.html"
     success_url = reverse_lazy('productos_lista')
