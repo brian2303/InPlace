@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+<!--LIBRERIAS DATATABLES-->
+{% block head %}
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+<script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'ventas/js/list.js' %}"></script>
+{% endblock head %}
+
+
+<!--TABLA GENERAL PARA HEREDAR HACIA TODAS LAS LISTAS-->
+{% block contentprincipal %}
+    <div class="card card-default">
+        <!--ENCABEZADO DE TABLA-->
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-search"></i>
+                {{title}}
+            </h3>
+        </div>
+        <!--BLOQUES DE COLUMNAS Y FILAS QUE SE SOBRE ESCRIBIRAN-->
+        <div class="card-body">
+            <table class="table" id="table-ventas">
+                <thead>
+                {% block columns %}
+                <tr>
+                    <th scope="col" style="width:20%;">Nro Identificación</th>
+                    <th scope="col" style="width:15%;">Nombre</th>
+                    <th scope="col" style="width:15%;">Fecha</th>
+                    <th scope="col" style="width:15%;">Subtotal</th>
+                    <th scope="col" style="width:15%;">Iva</th>
+                    <th scope="col" style="width:15%;">Total</th>
+                    <th scope="col" style="width:5%;">Opciones</th>
+                </tr>
+                {% endblock columns %}
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <!--FOOTER DE LA TABLA-->
+        <div class="card-footer">
+            <a href="{{ url_create }}" class="btn btn-primary btnTest" id="btn-new">
+                Nuevo Registro
+                <i class="fas fa-plus-circle"></i>
+            </a>
+        </div>
+    </div>
+    {% block modal %}
+        <div class="modal" id="modalDetalle">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <i class="fas fa-dolly-flatbed"></i>
+                            Detalle Venta
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio Venta</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="filas-detalle-venta">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock modal %}
+{% endblock contentprincipal %}

@@ -20,13 +20,13 @@
             <td>{{cliente.apellidos}}</td>
             <td>{{cliente.ciudad}}</td>
             <td>{{cliente.email}}</td>
-            <td>
+            <td class="text-center">
                 <button 
                     value = "{{cliente.pk}}"
                     id = "btn-telefonos"
-                    class="btn btn-outline-primary btn-xs btn-block"
+                    class="btn btn-primary btn-xs"
                     data-toggle="modal" data-target="#modaltelefono">
-                    Telefonos
+                    <i class="fas fa-phone"></i>
                 </button>
             </td>
             <td>
@@ -98,10 +98,10 @@
             <div class="modal-body">
             <div class="row">
                 <div class="col">
-                    <table class="table table-hover">
-                        <thead>
+                    <table class="table table-hover table-bordered table-reponsive">
+                        <thead class="thead-dark">
                         <tr>
-                            <th>Nro</th>
+                            <th><i class="fas fa-list-ol"></i></th>
                             <th>Telefono</th>
                         </tr>
                         </thead>

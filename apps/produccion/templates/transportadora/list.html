@@ -2,12 +2,12 @@
 
 {% block columns %}
     <tr>
-        <th scope="col" style="width:10%;">Nombre</th>
-        <th scope="col" style="width:15%;">Ciudad</th>
-        <th scope="col" style="width:15%;">Dirección</th>
-        <th scope="col" style="width:15%;">Email</th>
-        <th scope="col" style="width:15%;">Detalles</th>
-        <th scope="col" style="width:10%;">Opciones</th>
+        <th scope="col" style="width:20%;">Nombre</th>
+        <th scope="col" style="width:20%;">Ciudad</th>
+        <th scope="col" style="width:20%;">Dirección</th>
+        <th scope="col" style="width:20%;">Email</th>
+        <th scope="col" style="width:5%;">Detalles</th>
+        <th scope="col" style="width:15%;">Opciones</th>
     </tr>
 {% endblock columns %}
 
@@ -18,13 +18,13 @@
             <td>{{transportadora.ciudad}}</td>
             <td>{{transportadora.direccion}}</td>
             <td>{{transportadora.email}}</td>
-            <td>
+            <td class="text-center">
                 <button 
                     value = "{{transportadora.pk}}"
                     id = "btn-telefonos"
-                    class="btn btn-outline-primary btn-xs btn-block"
+                    class="btn btn-primary btn-xs"
                     data-toggle="modal" data-target="#modaltelefono">
-                    Telefonos
+                    <i class="fas fa-phone"></i>
                 </button>
             </td>
             <td>
@@ -71,7 +71,7 @@
         listaTelefonos.forEach(tel => {
             let tr = document.createElement("tr")
             let tdId = document.createElement("td")
-            tdId.textContent = tel.id
+            tdId.innerHTML = '<i class="fas fa-list-ol"></i>'
             let tdTelefono = document.createElement("td")
             tdTelefono.textContent = tel.numero_telefono
             tr.appendChild(tdId)
@@ -96,10 +96,10 @@
             <div class="modal-body">
             <div class="row">
                 <div class="col">
-                    <table class="table table-hover">
-                        <thead>
+                    <table class="table table-hover table-bordered table-reponsive">
+                        <thead class="thead-dark">
                         <tr>
-                            <th>Nro</th>
+                            <th><i class="fas fa-list-ol"></i></th>
                             <th>Telefono</th>
                         </tr>
                         </thead>

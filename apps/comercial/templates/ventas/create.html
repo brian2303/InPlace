@@ -1,0 +1,168 @@
+{% extends 'crud/list.html' %}
+{% load static %}
+
+{% block headlist %}
+
+    <!--libreria para realizar el autocomplete -->
+    <link rel="stylesheet" href="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.css' %} ">
+    <script src="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+
+    <!--librerias para obtener un buscador con filtrado-->
+    <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %} ">
+    <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %} "></script>
+    <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %} "></script>
+
+    <!--librerias para cuadrar fechas-->
+    <script src="{% static 'lib/moment-2.25.3/moment-with-locales.js' %} "></script>
+    <script src="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js' %} "></script>
+    <link rel="stylesheet" href="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css' %} ">
+
+    <!--libreria para hacer spin-->
+    <link rel="stylesheet" href="{% static 'lib/bootstrap-touchspin-4.3.0/jquery.bootstrap-touchspin.css' %} ">
+    <script src="{% static 'lib/bootstrap-touchspin-4.3.0/jquery.bootstrap-touchspin.js' %} "></script>
+    <script src="{% static '/ventas/js/form.js' %} "></script>
+{% endblock headlist %}
+
+
+{% block contentprincipal %}
+<form method="POST" id="form-guardar-venta">
+    <div class="card card-secondary">
+        <!--ENCABEZADO DE TABLA-->
+        <div class="card-header">
+            <h3 class="card-title">
+                {% if action == 'add' %}
+                    <i class="fas fa-cart-plus"></i>
+                    {{title}}
+                {% else %}
+                    <i class="fas fa-edit"></i>
+                    {{title}}
+                {% endif %}
+            </h3>
+        </div>
+        <!--DATOS DEL PRODUCTO Y LA VENTA-->
+        <div class="card-body">
+            <div class="row">
+                <!-- CLIENTE, FECHA DE VENTA Y ESTADO-->
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-money-bill-wave"></i>
+                                Datos de la venta                              
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>Estado:</label>
+                                        {{form.estado}}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>Seleccione la fecha: </label>
+                                        {{form.fecha}}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>Cliente:</label>
+                                        <a class="ml-1">
+                                            <i class="fas fa-user-plus"></i>
+                                        </a>
+                                        {{form.cliente}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--DETALLE DE PRODUCTOS-->
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-boxes"></i>
+                                Detalle de productos                               
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Buscador de productos</label>
+                                <div class="input-group">
+                                    <input type="text" 
+                                        class="form-control" placeholder="Buscar producto..." 
+                                        autocomplete="off" name="search">
+                                    <span class="input-group-append">
+                                        <button id="limpiarBusqueda" type="button" class="btn btn-danger btn-flat">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-danger btn-xs" style="color:white" id="btnBorrarDetalle">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Vaciar Lista
+                                </a>
+                            </div>
+                            <hr>
+                            <table class="table table-bordered" id="table-productos">
+                                <thead>
+                                    <tr>
+                                        <th>Eliminar</th>
+                                        <th>Producto</th>
+                                        <th>Categoria</th>
+                                        <th>Precio de venta</th>
+                                        <th>Cantidad</th>
+                                        <th>subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--TOTALES-->
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Subtotal:</label>
+                        {{form.subtotal}}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Iva:</label>
+                        {{form.iva}}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Total:</label>
+                        {{form.total}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--BOTON DE GUARDAR COMPRA-->
+        <div class="card-footer d-flex justify-content-end">
+            <input type="hidden" name="action" value="{{ action }}">
+            <button type="submit" class="btn btn-primary" style="color:white" id="btn-new">
+                Registrar Venta
+                <i class="fas fa-plus-circle"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+    {% if action == 'edit' %}
+        //debugger
+        ventas.items.productos = {{ detalle | safe }}
+        ventas.list()
+    {% endif %}
+</script>
+{% endblock contentprincipal %}

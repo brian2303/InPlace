@@ -1,6 +1,7 @@
-from apps.comercial.models import Cliente,TelefonoCliente
+from apps.comercial.models import Cliente,TelefonoCliente,Ventas
 from django.forms import *
 
+"""formularios para el crud de proveedores junto con telefonos"""
 class ClienteForm(ModelForm):
     
     class Meta:
@@ -60,8 +61,6 @@ class ClienteForm(ModelForm):
             )
         }
 
-
-
 class TelefonoClienteForm(ModelForm):
     
     class Meta:
@@ -74,3 +73,51 @@ class TelefonoClienteForm(ModelForm):
             'numero_telefono' : TextInput(attrs={'class':'form-control'})
         }
 
+
+"""formulario para el registro de una venta"""
+class VentasForm(ModelForm):
+
+    class Meta:
+        model = Ventas
+        fields = '__all__'
+        widgets = {
+            'cliente':Select(
+                attrs ={
+                    'class': 'form-control select2',
+                    'style': 'width: 100%',
+                }
+            ),
+            'fecha' : DateInput(
+                format = '%Y-%m-%d',
+                attrs ={
+                    'autocomplete':'off',
+                    'class':'form-control datetimepicker-input',
+                    'id':'fecha',
+                    'data-target': '#fecha',
+                    'data-toggle':'datetimepicker',
+                }
+            ),
+            'iva' : TextInput(
+                attrs = {
+                    'disabled':True,
+                    'class':'form-control',
+                }
+            ),
+            'subtotal' : TextInput(
+                attrs = {
+                    'disabled':True,
+                    'class':'form-control'
+                }
+            ),
+            'total' : TextInput(
+                attrs = {
+                    'disabled':True,
+                    'class':'form-control'
+                }
+            ),
+            'estado' : Select(
+                attrs = {
+                    'class':'form-control'
+                }
+            )
+        }

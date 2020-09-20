@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-
+from django.forms import model_to_dict
 # Create your models here.
 
 """Modelo de Categoría de Productos"""
@@ -11,6 +11,10 @@ class CategoriaProductos(models.Model):
         verbose_name='categoria'
         verbose_name_plural='categorias'
         db_table='categoria_productos'
+    
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
     
     def __str__(self):
         return self.nombre_categoria
@@ -25,6 +29,15 @@ class Productos(models.Model):
         on_delete=models.CASCADE,
         related_name='productos'
         )
+
+    def __str__(self):
+        return self.nombre
+    
+    def toJSON(self):
+        item = model_to_dict(self)
+        item['categoria'] = self.categoria.toJSON()
+        item['precio_unitario'] = format(self.precio_unitario, '.2f')
+        return item
 
     class Meta:
         verbose_name='producto'
