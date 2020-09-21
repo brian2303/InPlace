@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.usuarios',
     'apps.landing_page',
     'apps.login',
+    'apps.reportes',
     #librerias
     'widget_tweaks',
 ]

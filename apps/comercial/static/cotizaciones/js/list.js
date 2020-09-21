@@ -29,7 +29,8 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    return '$' + parseFloat(data).toFixed(2);
+                    let conversion = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(data)
+                    return `${conversion}`;
                 }
             },
             {

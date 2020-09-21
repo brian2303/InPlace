@@ -21,6 +21,8 @@ from apps.login.views import DashboardView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # reportes
+    path('reportes/',include('apps.reportes.urls')),
     # index dos idiomas
     path('', IndexView.as_view(),name='index'),
     path('en/', IndexViewEnglish.as_view(),name='index_english'),

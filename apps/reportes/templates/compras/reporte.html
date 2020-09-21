@@ -1,0 +1,73 @@
+{% extends 'crud/list.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block headlist %}
+    <!--librerias para el calendario de multiples tipos de seleccion-->
+    <script src="{% static 'lib/moment-2.25.3/moment.js' %} "></script>
+    <script src="{% static 'lib/daterangepicker-3.1/spanish.js' %} "></script>
+    <script src="{% static 'lib/daterangepicker-3.1/daterangepicker.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/daterangepicker-3.1/daterangepicker.css' %} ">
+
+    <!--Librerias para generar reportes en excel-->
+
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/css/buttons.bootstrap.min.css' %} ">
+    <script src="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/jszip-2.5.0/jszip.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/pdfmake-0.1.36/pdfmake.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/pdfmake-0.1.36/vfs_fonts.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/js/buttons.print.min.js' %}"></script>
+
+    <script src="{% static 'reporte_compra/js/report.js' %} "></script>
+{% endblock headlist %}
+
+{% block contentprincipal %}
+    <div class="card card-default">
+        <!--ENCABEZADO DE TABLA-->
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-file-export"></i>
+                {{title}}
+            </h3>
+        </div>
+        <!--BLOQUES DE COLUMNAS Y FILAS QUE SE SOBRE ESCRIBIRAN-->
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Rango de fechas</label>
+                        {{form.rango_fecha}}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group ml-2">
+                        <label>Proveedor</label>
+                        {{form.proveedor|add_class:'form-control'}}
+                    </div>
+                </div>
+            </div>
+            <table class="table" id="table-list">
+                <thead>
+                {% block columns %}
+                <tr>
+                    <th scope="col" style="width:20%;">Nombre</th>
+                    <th scope="col" style="width:20%;">Fecha</th>
+                    <th scope="col" style="width:20%;">Subtotal</th>
+                    <th scope="col" style="width:20%;">Iva</th>
+                    <th scope="col" style="width:20%;">Total</th>
+                </tr>
+                {% endblock columns %}
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% block modal %}
+    {% endblock modal %}
+{% endblock contentprincipal %}
+
+{% block javascript %}
+    {% comment %} por si se necesita algun js directo {% endcomment %}
+{% endblock javascript %}
