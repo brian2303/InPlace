@@ -6,7 +6,8 @@
         <th scope="col" style="width: 15%;">Username</th>
         <th scope="col" style="width: 15%;">Nombres</th>
         <th scope="col" style="width: 15%;">Apellidos</th>
-        <th scope="col" style="width: 30%;">Fecha de registro</th>
+        <th scope="col" style="width: 16%;">Fecha de registro</th>
+        <th scope="col" style="width: 8%;">Imagen</th>
         <th scope="col" style="width: 20%;">Opciones</th>
     </tr>
 {% endblock columns %}
@@ -17,8 +18,11 @@
             <td>{{usuarios_user.id}}</td>
             <td>{{usuarios_user.username}}</td>
             <td>{{usuarios_user.first_name}}</td>
-            <td>{{usuarios_user.last_name}}</td>
-            <td>{{usuarios_user.date_joined}}</td>         
+            <td>{{usuarios_user.last_name}}</td>            
+            <td>{{usuarios_user.date_joined}}</td>
+            <td>
+                <img src="/media/{{usuarios_user.image}}" class="img-fluid d-block mx-auto" style="widht: 20px; height: 20px;" alt="">
+            </td>         
             <td>
                 <a href="{% url 'usuario_editar' usuarios_user.pk %}" class="btn btn-warning btn-sm">
                     <i class="fas fa-edit"></i>

@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
-
+{% load widget_tweaks %}
 {% block contentprincipal %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="card">
         <div class="card-header">Registrar Usuario</div>
         <div class="card-body">
@@ -11,7 +11,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>{{ campo.label }}</label>
-                            {{campo}}
+                            {{campo|add_class:'form-control'}}
                         </div>
                     </div>
             {% endfor %}

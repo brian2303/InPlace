@@ -73,7 +73,7 @@
         <!-- NOMBRE DE USUARIO Y IMAGEN OPCIONAL -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="{% static '/login/img/user.png' %} " class="img-circle elevation-2" alt="Img opc">
+            <img src="/media/{{request.user.image}}" class="img-circle elevation-2" alt="Img opc">
         </div>
         <div class="info">
             <a href="{% url 'dashboard' %} " class="d-block">{{request.user.username|capfirst}}</a>

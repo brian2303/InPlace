@@ -49,7 +49,7 @@ class UserCreateView(LoginRequiredMixin,CreateView):
     def post(self, request, *args, **kwargs):
         data = {}
         try:
-            action = request.POST['action']
+            action = request.POST['action']            
             if action == 'add':
                 form = self.get_form()
                 data = form.save()

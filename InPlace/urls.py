@@ -18,6 +18,10 @@ from django.urls import path,include
 from apps.landing_page.views import IndexView,IndexViewEnglish
 from apps.login.views import DashboardView
 
+# Administración de Imagenes en Django
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,3 +40,4 @@ urlpatterns = [
     # Login
     path('login/',include('apps.login.urls'))
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

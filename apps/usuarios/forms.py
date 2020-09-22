@@ -9,46 +9,41 @@ class UserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = 'first_name', 'last_name', 'email', 'username', 'password',
+        fields = 'first_name', 'last_name', 'email', 'username', 'password', 'image',
         labels = {
             'first_name':'Nombres',
             'last_name':'Apellidos',
             'email':'Correo',
             'username':'Usuario',
-            'password':'Contraseña'
+            'password':'Contraseña',
+            'image':'Imagen'
         }
         widgets = {
             'first_name': TextInput(
                 attrs={
-                    'class':'form-control',
                     'placeholder': 'Ingrese Nombre(s)',
                 }
             ),
             'last_name': TextInput(
                 attrs={
-                    'class':'form-control',
                     'placeholder': 'Ingrese Apellido(s)',
                 }
             ),            
             'email': TextInput(
                 attrs={
-                    'class':'form-control',
                     'placeholder': 'Ingrese su email',
                 }
             ),
             'username': TextInput(
                 attrs={
-                    'class':'form-control',
                     'placeholder': 'Ingrese su Usuario',
                 }
-            ),
-            
+            ),            
             'password': PasswordInput(render_value=True,
                 attrs={
-                    'class':'form-control',
                     'placeholder': 'Ingrese su Contraseña',
                 }
-            ),
+            ),       
         }
         exclude = ['groups', 'user_permissions', 'last_login', 'date_joined', 'is_superuser', 'is_active', 'is_staff']
 
