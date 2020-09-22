@@ -9,21 +9,44 @@ class UserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = 'email', 'username', 'password',
-        widgets = {            
+        fields = 'first_name', 'last_name', 'email', 'username', 'password',
+        labels = {
+            'first_name':'Nombres',
+            'last_name':'Apellidos',
+            'email':'Correo',
+            'username':'Usuario',
+            'password':'Contraseña'
+        }
+        widgets = {
+            'first_name': TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder': 'Ingrese Nombre(s)',
+                }
+            ),
+            'last_name': TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder': 'Ingrese Apellido(s)',
+                }
+            ),            
             'email': TextInput(
                 attrs={
+                    'class':'form-control',
                     'placeholder': 'Ingrese su email',
                 }
             ),
             'username': TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su username',
+                    'class':'form-control',
+                    'placeholder': 'Ingrese su Usuario',
                 }
             ),
+            
             'password': PasswordInput(render_value=True,
                 attrs={
-                    'placeholder': 'Ingrese su password',
+                    'class':'form-control',
+                    'placeholder': 'Ingrese su Contraseña',
                 }
             ),
         }

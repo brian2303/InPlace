@@ -4,6 +4,8 @@
     <tr>
         <th scope="col" style="width: 5%;">Nro</th>
         <th scope="col" style="width: 15%;">Username</th>
+        <th scope="col" style="width: 15%;">Nombres</th>
+        <th scope="col" style="width: 15%;">Apellidos</th>
         <th scope="col" style="width: 30%;">Fecha de registro</th>
         <th scope="col" style="width: 20%;">Opciones</th>
     </tr>
@@ -14,6 +16,8 @@
         <tr>
             <td>{{usuarios_user.id}}</td>
             <td>{{usuarios_user.username}}</td>
+            <td>{{usuarios_user.first_name}}</td>
+            <td>{{usuarios_user.last_name}}</td>
             <td>{{usuarios_user.date_joined}}</td>         
             <td>
                 <a href="{% url 'usuario_editar' usuarios_user.pk %}" class="btn btn-warning btn-sm">
