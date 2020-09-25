@@ -14,18 +14,29 @@
 {% block contentprincipal %}
 <div class="container-fluid">
     <div class="row">
+        <!--Grafico de ventas mensuales-->
         <div class="col-lg-12">
             <figure class="highcharts-figure">
-                <div id="container"></div>
+                <div id="containersale"></div>
+            </figure>
+        </div>
+        <!--Grafico de insumos con stock mas bajo -->
+        <div class="col-lg-12">
+            <figure class="highcharts-figure">
+                <div id="containerlowerstock"></div>
             </figure>
         </div>
     </div>
 </div>
+
 {% endblock contentprincipal %}
 
 {% block javascript %}
 <script>
     let ventasPorAnio = '{{ventas_mes_a_mes}}'
     RenderizarGraficoVentas(ventasPorAnio)
+    let insumosNombres = {{ insumos_stock.nombres | safe }} 
+    let insumosCantidad = {{ insumos_stock.cantidad | safe }}
+    renderizarGraficoStockBajo(insumosNombres,insumosCantidad)
 </script>
 {% endblock javascript %}
