@@ -1,5 +1,5 @@
 from datetime import datetime
-# from crum import get_current_request
+from crum import get_current_request
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect

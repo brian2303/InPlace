@@ -36,7 +36,7 @@ class UserListView(LoginRequiredMixin,ListView):
         return context
 
 """crear un usuario"""
-class UserCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
+class UserCreateView(LoginRequiredMixin,CreateView):
     model = User
     template_name = "create.html"
     form_class = UserForm
