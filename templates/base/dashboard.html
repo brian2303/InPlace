@@ -1,1 +1,31 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="{% static 'css/dashboard/dashboard.css' %} " href="style.css">
+<script src="{% static 'lib/Highchart-8.2.0/highcharts.js' %} "></script>
+<script src="{% static 'lib/Highchart-8.2.0/modules/series-label.js' %} "></script>
+<script src="{% static 'lib/Highchart-8.2.0/modules/exporting.js' %} "></script>
+<script src="{% static 'lib/Highchart-8.2.0/modules/export-data.js' %} "></script>
+<script src="{% static 'lib/Highchart-8.2.0/modules/accessibility.js' %} "></script>
+<script src="{% static 'js/dashboard/dashboard.js' %} "></script>
+{% endblock head %}
+
+{% block contentprincipal %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+            </figure>
+        </div>
+    </div>
+</div>
+{% endblock contentprincipal %}
+
+{% block javascript %}
+<script>
+    let ventasPorAnio = '{{ventas_mes_a_mes}}'
+    RenderizarGraficoVentas(ventasPorAnio)
+</script>
+{% endblock javascript %}
