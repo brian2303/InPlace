@@ -3,7 +3,7 @@ from . import views
 from apps.usuarios.views import *
 
 urlpatterns = [
-    path('', views.index_usuarios),
+    # path('', views.index_usuarios),
     path('lista', UserListView.as_view(), name='usuarios_lista'),
     path('crear', UserCreateView.as_view(), name='usuario_crear'),
     path('editar<int:pk>/', UserUpdateView.as_view(), name='usuario_editar'),

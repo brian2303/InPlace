@@ -13,21 +13,20 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.usuarios.models import User
 from apps.usuarios.forms import UserForm
 
-# from apps.usuarios.mixins import ValidatePermissionRequiredMixin
+from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 # from apps.usuarios.forms import UserForm
 # from apps.usuarios.models import User
 
 # Create your views here.
 
-def index_usuarios(request):
-    return render(request,'list.html')
+# def index_usuarios(request):
+#     return render(request,'list.html')
 
 """Listar Usuarios"""
 class UserListView(LoginRequiredMixin,ListView):
     model = User
     template_name = "list.html"
     
-
     # CONTEXTO A ENVIAR
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,7 +36,7 @@ class UserListView(LoginRequiredMixin,ListView):
         return context
 
 """crear un usuario"""
-class UserCreateView(LoginRequiredMixin,CreateView):
+class UserCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
     model = User
     template_name = "create.html"
     form_class = UserForm

@@ -10,6 +10,9 @@
 
     <title>{{title}}</title>
 
+     <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{% static 'lib/adminlte3/plugins/fontawesome-free/css/all.min.css' %}">
     <!-- AdminLTE -->
@@ -24,6 +27,7 @@
     <script src="{% static 'lib/adminlte3/dist/js/adminlte.min.js' %}"></script>
     <!-- Sweet Alert -->
     <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
+
     <!--EN ESTE BLOQUE SE CARGAN LAS LIBRERIAS DE DATATABLE DESDE EL ARCHIVO list.html DE LOS TEMPLATES BASE-->
     {% block head %}
     {% endblock head %}
