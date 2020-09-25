@@ -179,12 +179,12 @@ $(function () {
     $('#btnBorrarDetalle').on('click',function () {
             if(compras.items.insumos.length === 0)return false
             Swal.fire({
-                title: 'Estas seguro de eliminar el detalle?',
+                title: 'Are you sure delete detail?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si!',
+                confirmButtonText: 'Yes!',
                 cancelButtonText: 'No!'
             }).then((result) => {
                 if (result.value) {

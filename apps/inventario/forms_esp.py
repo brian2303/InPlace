@@ -13,27 +13,27 @@ class ProveedorForm(ModelForm):
             'direccion',
         ]
         labels = {
-            'nombre': 'Name',
-            'ciudad':'City',
-            'direccion':'Address',
+            'nombre': 'Nombres',
+            'ciudad':'Ciudad',
+            'direccion':'Direccion',
         }
         widgets = {
             'nombre': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Name...'
+                    'placeholder':'Nombres...'
                 }
             ),
             'ciudad': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'City...'
+                    'placeholder':'Ciudad...'
                 }
             ),
             'direccion': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Address...'
+                    'placeholder':'Dirección...'
                 }
             )
         }
@@ -59,9 +59,9 @@ class InsumosForm(ModelForm):
         model = Insumos 
         fields = '__all__'
         labels = {
-            'nombre' : 'Supplie Name: ',
-            'cantidad': 'Quantity: ',
-            'unidad_medida': 'Measurement Unit: ',
+            'nombre' : 'Nombre de insumo: ',
+            'cantidad': 'Cantidad: ',
+            'unidad_medida': 'Unidad de medida: ',
         }
         widgets = {
             'nombre' : TextInput(
@@ -90,8 +90,8 @@ class UnidadMedidaForm(ModelForm):
         model = UnidadMedida
         fields = '__all__'
         labels = {
-            'nombre':'Name Measurement Unit:',
-            'abreviatura':'Abbreviation: ',
+            'nombre':'Nombre unidad de medida:',
+            'abreviatura':'Abreviatura: ',
         }
         widgets = {
             'nombre':TextInput(
@@ -127,6 +127,7 @@ class CompraInsumosForm(ModelForm):
             'fecha' : DateInput(
                 format = '%Y-%m-%d',
                 attrs ={
+                    'value': datetime.now().strftime('%Y-%m-%d'),
                     'autocomplete':'off',
                     'class':'form-control datetimepicker-input',
                     'id':'fecha',
@@ -136,7 +137,6 @@ class CompraInsumosForm(ModelForm):
             ),
             'iva' : TextInput(
                 attrs = {
-                    'disabled':True,
                     'class':'form-control',
                 }
             ),

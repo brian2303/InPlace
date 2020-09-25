@@ -10,9 +10,6 @@
 
     <title>{{title}}</title>
 
-     <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
-
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{% static 'lib/adminlte3/plugins/fontawesome-free/css/all.min.css' %}">
     <!-- AdminLTE -->
@@ -27,7 +24,6 @@
     <script src="{% static 'lib/adminlte3/dist/js/adminlte.min.js' %}"></script>
     <!-- Sweet Alert -->
     <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
-
     <!--EN ESTE BLOQUE SE CARGAN LAS LIBRERIAS DE DATATABLE DESDE EL ARCHIVO list.html DE LOS TEMPLATES BASE-->
     {% block head %}
     {% endblock head %}
@@ -51,13 +47,13 @@
                     <span class="badge badge-warning navbar-badge">1</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-header"> Notifications</span>
+                    <span class="dropdown-header"> Notificaciones</span>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
+                    <i class="fas fa-envelope mr-2"></i> 4 Mensajes nuevos
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See all notifications</a>
+                    <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
                 </div>
             </li>
             <!-- BOTÓN CIERRE DE SESIÓN -->
@@ -70,17 +66,17 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- NOMBRE DE SISTEMA Y ESPACIO PARA LOGO -->
     <div class="brand-link">
-        <img class="ml-md-1" style="width:45px; border-radius:50%" src="{% static '/img/logo2.png' %} " alt=""> 
+        <!-- <img src="" alt="">  El logo iria aca -->
         <span class="brand-text font-weight-light">InPlace</span>
     </div>
     <div class="sidebar">
         <!-- NOMBRE DE USUARIO Y IMAGEN OPCIONAL -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="/media/{{request.user.image}}" class="img-circle elevation-2" alt="Img opc">
+            <!-- <img src="" class="img-circle elevation-2" alt="Img opc"> -->
         </div>
         <div class="info">
-            <a href="#" class="d-block">User Name</a>
+            <a href="#" class="d-block">Nombre Usuario</a>
         </div>
         </div>
             {% include 'base/navegacion.html' %}
@@ -88,6 +84,14 @@
     </aside>
 
     <div class="content-wrapper">
+    {% comment %} <!-- TITULO DE ENCABEZADO DE CADA PAGINA -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <hr>
+            </div>
+        </div>
+    </div> {% endcomment %}
 
     <!-- CONTENIDO DE CADA PAGINA -->
     <div class="content mt-2">
@@ -101,7 +105,7 @@
     <!-- CERRAR SESIÓN -->
     <aside class="control-sidebar control-sidebar-dark" style="height: 60px;">
         <div class="p-3">
-            <a href="{% url 'index' %}">Logout</a>
+            <a href="">Cerrar Sesión</a>
         </div>
     </aside>
 
@@ -112,7 +116,7 @@
         InPlace
     </div>
     <!-- CONTENIDO DE LA IZQUIERDA -->
-    <strong>Copyright &copy; InPlace </strong> All rights reserved.
+    <strong>Copyright &copy; InPlace </strong> Todos los derechos reservados.
     </footer>
 </div>
 
