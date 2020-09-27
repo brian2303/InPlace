@@ -1,0 +1,17 @@
+{% extends 'crud/list.html' %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 5%;">Nro</th>        
+        <th scope="col" style="width: 15%;">Nombre</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+    {% for auth_group in object_list %}
+        <tr>
+            <td>{{auth_group.id}}</td>
+            <td>{{auth_group.name}}</td>            
+        </tr>
+    {% endfor %}
+{% endblock rows %}

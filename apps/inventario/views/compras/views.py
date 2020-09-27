@@ -9,8 +9,9 @@ from django.forms import model_to_dict
 import json
 from django.db import transaction
 from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 
-class CompraInsumosCreateView(LoginRequiredMixin,CreateView):
+class CompraInsumosCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
 
     model = CompraInsumos
     form_class = CompraInsumosForm
@@ -66,7 +67,7 @@ class CompraInsumosCreateView(LoginRequiredMixin,CreateView):
         context['action'] = 'add'
         return context
 
-class CompraInsumosUpdateView(LoginRequiredMixin,UpdateView):
+class CompraInsumosUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
 
     model = CompraInsumos
     form_class = CompraInsumosForm
@@ -139,7 +140,7 @@ class CompraInsumosUpdateView(LoginRequiredMixin,UpdateView):
         return context
 
 
-class CompraInsumosListView(LoginRequiredMixin,ListView):
+class CompraInsumosListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
     model = CompraInsumos
     template_name = "compras/list.html"
 
@@ -165,7 +166,7 @@ class CompraInsumosListView(LoginRequiredMixin,ListView):
         return context
     
 
-class CompraInsumosDeleteView(LoginRequiredMixin,DeleteView):
+class CompraInsumosDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
     model = CompraInsumos
     template_name = 'compras/delete.html'
     success_url = reverse_lazy('compra_lista')

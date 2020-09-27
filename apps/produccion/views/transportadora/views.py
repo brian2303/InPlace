@@ -6,13 +6,14 @@ import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
+from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 # propias
 from apps.produccion.models import Transportadora, TelefonoTransportadora
 from apps.produccion.forms import TransportadoraForm, TelefonoTransportadoraForm
 
 """Listar Transportadoras"""
-class TransportadoraListView(LoginRequiredMixin,ListView):
+class TransportadoraListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
     model = Transportadora
     template_name = "transportadora/list.html"
 
@@ -43,7 +44,7 @@ class TransportadoraListView(LoginRequiredMixin,ListView):
 
 
 """Crear una Transportadora"""
-class TransportadoraCreateView(LoginRequiredMixin,CreateView):
+class TransportadoraCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
     model = Transportadora
     template_name = "transportadora/create.html"
     form_class = TransportadoraForm
@@ -77,7 +78,7 @@ class TransportadoraCreateView(LoginRequiredMixin,CreateView):
         
 
 """Modificar Transportadora"""
-class TransportadoraUpdateView(LoginRequiredMixin,UpdateView):
+class TransportadoraUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
     model = Transportadora
     template_name = "transportadora/create.html"
     form_class = TransportadoraForm
@@ -119,7 +120,7 @@ class TransportadoraUpdateView(LoginRequiredMixin,UpdateView):
 
 
 """Eliminar una Transportadora"""
-class TransportadoraDeleteView(LoginRequiredMixin,DeleteView):
+class TransportadoraDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
     model = Transportadora
     template_name = "transportadora/delete.html"
     success_url = reverse_lazy('transportadoras_lista')

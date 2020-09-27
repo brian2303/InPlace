@@ -6,15 +6,18 @@ import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
-
+# Logion y Privilegios en el Sistema
+from apps.usuarios.mixins import ValidatePermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 # modelo de clientes
 from apps.inventario.models import Insumos
 from apps.inventario.forms import InsumosForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 """Listar insumos"""
 class InsumosListView(LoginRequiredMixin,ListView):
     model = Insumos
     template_name = "insumos/list.html"
+    permission_required = 'view_insumos'
 
     # CONTEXTO A ENVIAR
     def get_context_data(self, **kwargs):
@@ -25,22 +28,21 @@ class InsumosListView(LoginRequiredMixin,ListView):
         return context
 
 """crear un insumo"""
-class InsumosCreateView(LoginRequiredMixin,CreateView):
+class InsumosCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
     model = Insumos
     template_name = "insumos/create.html"
     form_class = InsumosForm
     success_url = reverse_lazy('insumo_lista')
     
-
 """modificar un insumo"""
-class InsumosUpdateView(LoginRequiredMixin,UpdateView):
+class InsumosUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
     model = Insumos
     template_name = "insumos/create.html"
     form_class = InsumosForm   
     success_url = reverse_lazy('insumo_lista')
 
 """eliminar un insumo"""
-class InsumosDeleteView(LoginRequiredMixin,DeleteView):
+class InsumosDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
     model = Insumos
     template_name = "insumos/delete.html"
     success_url = reverse_lazy('insumo_lista')

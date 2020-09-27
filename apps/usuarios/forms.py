@@ -4,7 +4,6 @@ from django.forms import ModelForm
 from django import forms
 
 class UserForm(ModelForm):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['autofocus'] = True
@@ -19,7 +18,7 @@ class UserForm(ModelForm):
             'username':'Usuario',
             'password':'Contraseña',
             'image':'Imagen',
-            'groups':'Grupos',
+            'groups':'Roles',
         }
         widgets = {
             'first_name': TextInput(

@@ -9,10 +9,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms import model_to_dict
 import json
 from django.db import transaction
+from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 """crear una venta con su detalle"""
-class VentasCreateView(LoginRequiredMixin,CreateView):
+class VentasCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
 
     model = Ventas
     form_class = VentasForm
@@ -73,7 +74,7 @@ class VentasCreateView(LoginRequiredMixin,CreateView):
 
 
 
-class VentasUpdateView(LoginRequiredMixin,UpdateView):
+class VentasUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
 
     model = Ventas
     form_class = VentasForm
@@ -149,7 +150,7 @@ class VentasUpdateView(LoginRequiredMixin,UpdateView):
         return context
 
 
-class VentasListView(LoginRequiredMixin,ListView):
+class VentasListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
     model = Ventas
     template_name = "ventas/list.html"
 
@@ -175,7 +176,7 @@ class VentasListView(LoginRequiredMixin,ListView):
         return context
     
 
-class CotizacionesListView(LoginRequiredMixin,ListView):
+class CotizacionesListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
     model = Ventas
     template_name = "cotizaciones/list.html"
 
@@ -201,7 +202,7 @@ class CotizacionesListView(LoginRequiredMixin,ListView):
         return context
 
 
-class VentasDeleteView(LoginRequiredMixin,DeleteView):
+class VentasDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
     
     model = Ventas
     template_name = 'ventas/delete.html'

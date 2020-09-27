@@ -7,13 +7,14 @@ import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
+from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 # modelos y formularios de unidades de medida
 from apps.inventario.models import UnidadMedida
 from apps.inventario.forms import UnidadMedidaForm
 
 """Listar unidad de medida"""
-class UnidadMedidaListView(LoginRequiredMixin,ListView):
+class UnidadMedidaListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
     model = UnidadMedida
     template_name = "unidad_medida/list.html"
 
@@ -26,7 +27,7 @@ class UnidadMedidaListView(LoginRequiredMixin,ListView):
         return context
 
 """crear una unidad de medida"""
-class UnidadMedidaCreateView(LoginRequiredMixin,CreateView):
+class UnidadMedidaCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
     model = UnidadMedida
     template_name = "unidad_medida/create.html"
     form_class = UnidadMedidaForm
@@ -34,14 +35,14 @@ class UnidadMedidaCreateView(LoginRequiredMixin,CreateView):
     
 
 """modificar una unidad de medida"""
-class UnidadMedidaUpdateView(LoginRequiredMixin,UpdateView):
+class UnidadMedidaUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
     model = UnidadMedida
     template_name = "unidad_medida/create.html"
     form_class = UnidadMedidaForm   
     success_url = reverse_lazy('unidadmedida_lista')
 
 """eliminar una unidad de medida"""
-class UnidadMedidaDeleteView(LoginRequiredMixin,DeleteView):
+class UnidadMedidaDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
     model = UnidadMedida
     template_name = "unidad_medida/delete.html"
     success_url = reverse_lazy('unidadmedida_lista')

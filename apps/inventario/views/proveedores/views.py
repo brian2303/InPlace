@@ -11,10 +11,11 @@ from django.db import transaction
 # importaciones propias del proyecto
 from apps.inventario.models import Proveedor,TelefonoProveedor
 from apps.inventario.forms import ProveedorForm,TelefonoProveedorForm
+from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 """Listar proveedores"""
-class ProveedorListView(LoginRequiredMixin,ListView):
+class ProveedorListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
     model = Proveedor
     template_name = "proveedor/list.html"
 
@@ -45,7 +46,7 @@ class ProveedorListView(LoginRequiredMixin,ListView):
 
 
 """crear proveedor"""
-class ProveedorCreateView(LoginRequiredMixin,CreateView):
+class ProveedorCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,CreateView):
     model = Proveedor
     template_name = "proveedor/create.html"
     form_class = ProveedorForm
@@ -80,7 +81,7 @@ class ProveedorCreateView(LoginRequiredMixin,CreateView):
 
 
 """modificar proveedor"""
-class ProveedorUpdateView(LoginRequiredMixin,UpdateView):
+class ProveedorUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
     model = Proveedor
     template_name = "proveedor/create.html"
     form_class = ProveedorForm
@@ -119,7 +120,7 @@ class ProveedorUpdateView(LoginRequiredMixin,UpdateView):
             return redirect('proveedor_crear')
 
 """eliminar un proveedor"""
-class ProveedorDeleteView(LoginRequiredMixin,DeleteView):
+class ProveedorDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
     model = Proveedor
     template_name = "proveedor/delete.html"
     success_url = reverse_lazy('proveedor_lista')
