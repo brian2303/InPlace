@@ -24,7 +24,7 @@ class Proveedor(models.Model):
 
 """modelo de telefonos del proveedor"""
 class TelefonoProveedor(models.Model):
-    numero_telefono=models.CharField(max_length=11)
+    numero_telefono=models.CharField(max_length=16)
     proveedor=models.ForeignKey(
         Proveedor, 
         on_delete=models.CASCADE, 

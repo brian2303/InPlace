@@ -47,7 +47,7 @@ class TelefonoProveedorForm(ModelForm):
             'numero_telefono':'Numero'
         }
         widgets = {
-            'numero_telefono' : TextInput(attrs={'class':'form-control'}),
+            'numero_telefono' : TextInput(attrs={'class':'form-control','maxlength':15}),
 
         }
 
