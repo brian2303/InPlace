@@ -4,8 +4,9 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from apps.inventario.models import CompraInsumos,Proveedor
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class ReporteCompraView(TemplateView):
+class ReporteCompraView(LoginRequiredMixin,TemplateView):
     template_name = "compras/reporte.html"
 
     @method_decorator(csrf_exempt)
