@@ -20,7 +20,7 @@ class CategoriaProductosListView(LoginRequiredMixin,ListView):
     # CONTEXTO A ENVIAR
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de categorias'
+        context["title"] = 'Categories List'
         context["url_list"] = reverse_lazy('categorias_lista')
         context['url_create'] = reverse_lazy('categoria_crear')
         return context

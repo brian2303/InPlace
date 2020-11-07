@@ -15,42 +15,42 @@ class ClienteForm(ModelForm):
             'email',
         ]
         labels = {
-            'numero_identificacion':'Numero identificacion',
-            'nombres': 'Nombres',
-            'apellidos':'Apellidos',
-            'direccion':'Direccion',
-            'ciudad':'Ciudad',
+            'numero_identificacion':'Id',
+            'nombres': 'Name',
+            'apellidos':'Last Name',
+            'direccion':'Address',
+            'ciudad':'City',
             'email':'Email',
         }
         widgets = {
             'numero_identificacion':TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Nro de identificación...'
+                    'placeholder':'Id...'
                 }
             ),
             'nombres': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Nombres...'
+                    'placeholder':'Name...'
                 }
             ),
             'apellidos': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'apellidos...'
+                    'placeholder':'Last Name...'
                 }
             ),
             'direccion': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Dirección...'
+                    'placeholder':'Address...'
                 }
             ),
             'ciudad': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Ciudad...'
+                    'placeholder':'City...'
                 }
             ),
             'email': TextInput(

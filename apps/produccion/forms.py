@@ -9,13 +9,13 @@ class CategoriaProductosForm(ModelForm):
             'nombre_categoria',
         ]
         labels = {
-            'nombre_categoria':'Nombre Categoría',
+            'nombre_categoria':'Category Name',
         }
         widgets = {
             'nombre_categoria':TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Nombre Categoría...'
+                    'placeholder':'Category Name...'
                 }
             ),
         }
@@ -31,34 +31,34 @@ class ProductosForm(ModelForm):
             'categoria',
         ]
         labels = {
-            'nombre':'Nombre',
-            'cantidad':'Cantidad',
-            'precio_unitario':'Precio Unitario',
-            'categoria':'Categoría',
+            'nombre':'Name',
+            'cantidad':'Quantity',
+            'precio_unitario':'Unit Price',
+            'categoria':'Category',
         }
         widgets = {
             'nombre': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Nombre...'
+                    'placeholder':'Name...'
                 }
             ),
             'cantidad': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Cantidad...'
+                    'placeholder':'Quantity...'
                 }
             ),
             'precio_unitario': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Precio Unitario...'
+                    'placeholder':'Unit Price...'
                 }
             ),
             'categoria': Select(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Categoría...'
+                    'placeholder':'Category...'
                 }
             ),            
         }
@@ -74,28 +74,28 @@ class TransportadoraForm(ModelForm):
             'email',
         ]
         labels = {
-            'nombre': 'Nombre',
-            'ciudad':'Ciudad',
-            'direccion':'Direccion',
+            'nombre': 'Name',
+            'ciudad':'City',
+            'direccion':'Address',
             'email':'Email',
         }
         widgets = {
             'nombre': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Nombre...'
+                    'placeholder':'Name...'
                 }
             ),
             'ciudad': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Ciudad...'
+                    'placeholder':'City...'
                 }
             ),
             'direccion': TextInput(
                 attrs={
                     'class':'form-control',
-                    'placeholder':'Dirección...'
+                    'placeholder':'Address...'
                 }
             ),
             'email': TextInput(

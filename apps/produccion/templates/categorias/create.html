@@ -3,7 +3,7 @@
 {% block contentprincipal %}
 <form method="post">
     <div class="card">
-        <div class="card-header">Registrar Categoría</div>
+        <div class="card-header">Add Category</div>
         <div class="card-body">
             {% csrf_token %}
             <div class="row">
@@ -20,7 +20,7 @@
         <input type="hidden" name="categoria_id" value ="{{id_categoria}}" >
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btnTest" id="btn-new">
-                Guardar Registro
+                Save Changes
                 <i class="fas fa-plus-circle"></i>
             </button>
         </div>

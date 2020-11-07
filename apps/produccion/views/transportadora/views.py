@@ -36,7 +36,7 @@ class TransportadoraListView(LoginRequiredMixin,ListView):
     # CONTEXTO A ENVIAR
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Listado de Transportadoras'
+        context["title"] = 'Carriers List'
         context["url_list"] = reverse_lazy('transportadoras_lista')
         context['url_create'] = reverse_lazy('transportadora_crear')
         return context
