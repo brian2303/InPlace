@@ -1,10 +1,16 @@
-from django.views.generic import TemplateView
+import os
+
+from django.views.generic import TemplateView,View
 from apps.reportes.forms import ReporteVentaForm
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from apps.comercial.models import Ventas,DetalleVenta,Cliente
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+
 
 class ReporteVentaView(LoginRequiredMixin,TemplateView):
     template_name = "ventas/reporte.html"
@@ -42,3 +48,19 @@ class ReporteVentaView(LoginRequiredMixin,TemplateView):
         context["form"] = ReporteVentaForm()
         return context
     
+class ReportView(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('ventas/general.html')
+        ventas = Ventas.objects.all()
+        usuario = request.user.username
+        # import pdb; pdb.set_trace()
+        context = {'title':'Reporte de ventas','ventas':ventas,'usuario':usuario}
+        html = template.render(context)
+        response = HttpResponse(content_type='application/pdf')
+        # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+        # create a pdf
+        pisa_status = pisa.CreatePDF(
+            html, dest=response)
+        if pisa_status.err:
+            return HttpResponse('Tuvimos algunos errores <pre>' + html + '</pre>')
+        return response

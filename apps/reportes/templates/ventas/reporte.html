@@ -25,11 +25,14 @@
 {% block contentprincipal %}
     <div class="card card-default">
         <!--ENCABEZADO DE TABLA-->
-        <div class="card-header">
+        <div class="card-header d-flex flex-column">
             <h3 class="card-title">
                 <i class="fas fa-file-export"></i>
                 {{title}}
             </h3>
+            <div class="mt-1">
+                <a class="btn btn-sm btn-dark" href="{% url 'reporte' %}">Reporte general ventas</a>
+            </div>
         </div>
         <!--BLOQUES DE COLUMNAS Y FILAS QUE SE SOBRE ESCRIBIRAN-->
         <div class="card-body">

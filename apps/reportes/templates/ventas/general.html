@@ -1,0 +1,21 @@
+<body>
+    <span>
+        <img width="200" height="100" src="https://img2.freepng.es/20180802/psz/kisspng-bar-chart-clip-art-portable-network-graphics-graph-business-growth-graph-hires-smartes-online-marke-5b62ba1c1eafd0.6475180015331968281257.jpg">
+        <h1 style="font-size: 20px;">{{ title }}</h1>
+        <p style="font-size: 15px;" >Generado por : {{ usuario | capfirst }}</p>
+    </span>
+    <table style="border:1px solid black; margin-top:40px;padding:5px">
+        <tr>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+        </tr>
+        {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.fecha }}</td>
+                <td>{{ venta.total }}</td>
+                <td>{{ venta.estado }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
