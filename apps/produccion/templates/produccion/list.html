@@ -1,0 +1,32 @@
+{% extends 'crud/list.html' %}
+
+{% block columns %}
+    <tr>
+    <th scope="col" style="width:15%;">Fecha Registro</th>
+    <th scope="col" style="width:15%;">Fecha Entrega</th>
+    <th scope="col" style="width:15%;">Fecha Recolección</th>
+    <th scope="col" style="width:15%;">Ciudad</th>
+    <th scope="col" style="width:15%;">Transportadora</th>
+    <th scope="col" style="width:15%;">Opciones</th>
+</tr>
+{% endblock columns %}
+
+{% block rows %}
+    {% for produccion in object_list %}
+        <tr>
+            <td>{{produccion.fechaRegistro}}</td>
+            <td>{{produccion.fechaEntrega}}</td>            
+            <td>{{produccion.fechaRecoleccion}}</td>
+            <td>{{produccion.ciudad}}</td>
+            <td>{{produccion.transportadora.nombre}}</td>            
+            <td>
+                <a class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a  class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock rows %}

@@ -33,6 +33,7 @@ class InsumosCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Creat
     template_name = "insumos/create.html"
     form_class = InsumosForm
     success_url = reverse_lazy('insumo_lista')
+    permission_required = 'add_insumos'
     
 """modificar un insumo"""
 class InsumosUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
@@ -40,6 +41,7 @@ class InsumosUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Updat
     template_name = "insumos/create.html"
     form_class = InsumosForm   
     success_url = reverse_lazy('insumo_lista')
+    permission_required = 'update_insumos'
 
 """eliminar un insumo"""
 class InsumosDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):

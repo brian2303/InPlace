@@ -13,7 +13,7 @@ from apps.produccion.models import Transportadora, TelefonoTransportadora
 from apps.produccion.forms import TransportadoraForm, TelefonoTransportadoraForm
 
 """Listar Transportadoras"""
-class TransportadoraListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
+class TransportadoraListView(LoginRequiredMixin,ListView):
     model = Transportadora
     template_name = "transportadora/list.html"
 

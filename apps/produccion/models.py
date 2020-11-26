@@ -80,3 +80,22 @@ class TelefonoTransportadora(models.Model):
         return self.numero_telefono
 
 
+"""Modelo de Ordenes de Despacho"""
+class OrdenProduccion(models.Model):
+    fechaRegistro = models.DateField(default=datetime.now)
+    fechaEntrega = models.DateField()
+    fechaRecoleccion = models.DateField()    
+    ciudad=models.CharField(max_length=25)
+    transportadora=models.ForeignKey(
+        Transportadora,
+        on_delete=models.CASCADE,
+        related_name='produccion'
+    )
+
+    class Meta:
+        verbose_name='orden produccion'
+        verbose_name_plural='ordenes produccion'
+        db_table='produccion'
+    
+    def __str__(self):
+        return self.ciudad

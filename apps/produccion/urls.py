@@ -5,7 +5,7 @@ from . import views
 from apps.produccion.views.categorias.views import *
 from apps.produccion.views.productos.views import *
 from apps.produccion.views.transportadora.views import *
-
+from apps.produccion.views.produccion.views import *
 urlpatterns = [
     path('categoria/lista', CategoriaProductosListView.as_view(),name='categorias_lista'),
     path('categoria/crear', CategoriaProductosCreateView.as_view(),name='categoria_crear'),
@@ -19,4 +19,6 @@ urlpatterns = [
     path('transportadora/crear', TransportadoraCreateView.as_view(),name='transportadora_crear'),
     path('transportadora/editar/<int:pk>',TransportadoraUpdateView.as_view(),name='transportadora_editar'),
     path('transportadora/eliminar/<int:pk>',TransportadoraDeleteView.as_view(),name='transportadora_eliminar'),
+    path('produccion/listar/',OrdenProduccionListView.as_view(),name='produccion_listar'),
+    path('produccion/crear/',OrdenProduccionCreateView.as_view(),name='produccion_crear'),
 ]

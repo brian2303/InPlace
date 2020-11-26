@@ -1,4 +1,4 @@
-from apps.produccion.models import Productos, CategoriaProductos, Transportadora, TelefonoTransportadora
+from apps.produccion.models import *
 from django.forms import *
 
 class CategoriaProductosForm(ModelForm):
@@ -13,7 +13,7 @@ class CategoriaProductosForm(ModelForm):
         }
         widgets = {
             'nombre_categoria':TextInput(
-                attrs={
+                attrs={                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
                     'class':'form-control',
                     'placeholder':'Nombre Categoría...'
                 }
@@ -118,4 +118,41 @@ class TelefonoTransportadoraForm(ModelForm):
         }
         widgets = {
             'numero_telefono' : TextInput(attrs={'class':'form-control'})
+        }
+
+class OrdenProduccionForm(ModelForm):
+    
+    class Meta:
+        model = OrdenProduccion
+        fields = [
+            'fechaRegistro',
+            'fechaEntrega',
+            'fechaRecoleccion',
+            'ciudad',
+            'transportadora'
+        ]
+        labels = {
+            'fechaRegistro':'Fecha de registro',
+            'fechaEntrega':'Fecha de entrega',
+            'fechaRecoleccion':'Fecha de recolección',
+            'ciudad':'Ciudad',
+        }
+        widgets = {            
+            'fechaRegistro' : DateInput(
+                format = '%Y-%m-%d',
+                attrs ={
+                    'autocomplete':'off',
+                    'class':'form-control datetimepicker-input',
+                    'id':'fechaRegistro'
+                }
+            ),
+            'fechaEntrega': TextInput(attrs={'class':'form-control'}),
+            'fechaRecoleccion':TextInput(attrs={'class':'form-control'}),
+            'ciudad':TextInput(attrs={'class':'form-control'}),
+            'transportadora':Select(
+                attrs={
+                    'class':'form-control',
+                    'placeholder':'Transpotadora...'
+                }
+            ),
         }
