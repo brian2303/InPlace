@@ -41,30 +41,29 @@ class OrdenProduccionCreateView(LoginRequiredMixin,CreateView):
     form_class = OrdenProduccionForm
     success_url = reverse_lazy('produccion_listar')
 
-# """modificar un producto"""
-# class ProductosUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
-#     model = Productos
-#     template_name = "productos/create.html"
-#     form_class = ProductosForm    
-#     success_url = reverse_lazy('productos_lista')
+"""modificar un producto"""
+class OrdenProduccionUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
+    model = OrdenProduccion
+    template_name = "produccion/create.html"
+    form_class = OrdenProduccionForm    
+    success_url = reverse_lazy('produccion_listar')
 
 # """eliminar un producto"""
-# class ProductosDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
-#     model = Productos
-#     template_name = "productos/delete.html"
-#     success_url = reverse_lazy('productos_lista')
+class OrdenProduccionDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,DeleteView):
+    model = OrdenProduccion
+    template_name = "produccion/delete.html"
+    success_url = reverse_lazy('produccion_listar')
 
-#     @method_decorator(csrf_exempt)
-#     def dispatch(self, request, *args, **kwargs):
-#         return super().dispatch(request, *args, **kwargs)
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     
     
-#     def post(self,request,*args,**kwgars):
-#         data = {}
-#         try:
-#             self.object = self.get_object()
-#             self.object.delete()
-#         except Exception as e:
-#             data['error'] = str(e)
-#         return JsonResponse(data)
-        
+    def post(self,request,*args,**kwgars):
+        data = {}
+        try:
+            self.object = self.get_object()
+            self.object.delete()
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)

@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block contentprincipal %}
+<form id="form_eliminar" method="POST">
+    {% csrf_token %}
+    <div class="jumbotron">
+        <h1>Esta seguro de eliminar al registro {{object.pk}} ?</h1>
+        <button class="btn btn-outline-danger" type="submit">Si, Eliminar</button>
+        <a class="btn btn-info" href="{% url 'productos_lista' %}">Cancelar</a>
+    </div>
+</form>
+<script>
+    const FORM_ELIMINACION = document.getElementById('form_eliminar')
+    const URL = window.location.pathname
+    function redireccion (obj){
+        if(!obj.hasOwnProperty('error')){
+            Swal.fire({
+            title: 'Perfecto !',
+            text: "Registro borrado exitosamente",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar'
+            })
+            .then((result) => {
+            if (result.value) {
+                location.href = '/produccion/produccion/listar'
+            }
+            })
+            
+        }
+    }
+    
+    FORM_ELIMINACION.addEventListener('submit', e =>{
+        e.preventDefault()
+        const PARAMETROS = {
+            method : 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch(URL,PARAMETROS)
+            .then(response => response.json())
+            .then(res => redireccion(res))
+    })
+</script>
+{% endblock contentprincipal %}

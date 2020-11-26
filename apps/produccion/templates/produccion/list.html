@@ -20,10 +20,10 @@
             <td>{{produccion.ciudad}}</td>
             <td>{{produccion.transportadora.nombre}}</td>            
             <td>
-                <a class="btn btn-warning btn-sm">
+                <a href="{% url 'produccion_editar' produccion.pk %}" class="btn btn-warning btn-sm">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a  class="btn btn-danger btn-sm">
+                <a href="{% url 'produccion_eliminar' produccion.pk %}" class="btn btn-danger btn-sm">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>

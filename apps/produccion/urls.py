@@ -21,4 +21,6 @@ urlpatterns = [
     path('transportadora/eliminar/<int:pk>',TransportadoraDeleteView.as_view(),name='transportadora_eliminar'),
     path('produccion/listar/',OrdenProduccionListView.as_view(),name='produccion_listar'),
     path('produccion/crear/',OrdenProduccionCreateView.as_view(),name='produccion_crear'),
+    path('produccion/editar/<int:pk>',OrdenProduccionUpdateView.as_view(),name='produccion_editar'),
+    path('produccion/eliminar/<int:pk>',OrdenProduccionDeleteView.as_view(),name='produccion_eliminar'),
 ]
