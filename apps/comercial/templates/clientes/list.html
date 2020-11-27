@@ -1,6 +1,7 @@
 {% extends 'crud/list.html' %}
 
 {% block columns %}
+    <a href="{% url 'envio_email' %} ">Envio mail</a>
     <tr>
         <th scope="col" style="width:10%;">Identificacion</th>
         <th scope="col" style="width:15%;">Nombre</th>

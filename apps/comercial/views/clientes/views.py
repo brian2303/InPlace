@@ -27,6 +27,11 @@ class ClienteListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListVie
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
 
+        action = request.POST['action']
+        if action == "envio_correos":
+            import pdb;pdb.set_trace()
+            print("si")
+
         if body['action'] == 'listar_telefonos':
             telefonos_cliente = TelefonoCliente.objects.filter(cliente_id=body['id'])
             for telefono in telefonos_cliente:

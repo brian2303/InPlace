@@ -80,7 +80,7 @@ class TelefonoTransportadora(models.Model):
         return self.numero_telefono
 
 
-"""Modelo de Ordenes de Despacho"""
+"""Modelo de Ordenes de Produccion"""
 class OrdenProduccion(models.Model):
     fechaRegistro = models.DateField(default=datetime.now)
     fechaEntrega = models.DateField()

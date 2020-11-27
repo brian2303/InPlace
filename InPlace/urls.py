@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path,include
 from apps.landing_page.views import IndexView,IndexViewEnglish
 from apps.login.views import DashboardView
-
 # Administración de Imagenes en Django
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('correos/',include('apps.correos.urls')),
     path('admin/', admin.site.urls),
     # reportes
     path('reportes/',include('apps.reportes.urls')),

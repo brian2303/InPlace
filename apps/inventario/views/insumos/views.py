@@ -6,7 +6,7 @@ import json
 from django.forms import model_to_dict
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
-# Logion y Privilegios en el Sistema
+# Logon y Privilegios en el Sistema
 from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 # modelo de clientes
@@ -48,6 +48,7 @@ class InsumosDeleteView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Delet
     model = Insumos
     template_name = "insumos/delete.html"
     success_url = reverse_lazy('insumo_lista')
+    permission_required = 'delete_insumos'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.landing_page',
     'apps.login',
     'apps.reportes',
+    'apps.correos',
     #librerias
     'widget_tweaks',
 ]
@@ -148,3 +149,10 @@ LOGIN_URL = '/login/'
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'gomito5888@gmail.com'
+EMAIL_HOST_PASSWORD = 'DjTiesto'
+EMAIL_USE_TLS = True
