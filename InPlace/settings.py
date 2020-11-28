@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'apps.correos',
     #librerias
     'widget_tweaks',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +157,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'gomito5888@gmail.com'
 EMAIL_HOST_PASSWORD = 'DjTiesto'
 EMAIL_USE_TLS = True
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
