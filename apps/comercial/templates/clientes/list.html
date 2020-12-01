@@ -1,7 +1,6 @@
 {% extends 'crud/list.html' %}
 
 {% block columns %}
-    <a href="{% url 'envio_email' %} ">Envio mail</a>
     <tr>
         <th scope="col" style="width:10%;">Identificacion</th>
         <th scope="col" style="width:15%;">Nombre</th>
@@ -42,6 +41,12 @@
     {% endfor %}
 {% endblock rows %}
 {% block modal %}
+<div class="card-footer">
+    <a href="{% url 'envio_email' %}" class="btn btn-primary btnTest" id="btn-new">
+        Envío Promociones
+        <i class="fas fa-plus-circle"></i>
+    </a>
+</div>
 <script>
     // ELEMENTO DEL BODY TABLE
     const btn_telefonos = document.querySelectorAll('#btn-telefonos')

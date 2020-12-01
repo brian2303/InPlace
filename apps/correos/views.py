@@ -8,23 +8,24 @@ from apps.comercial.models import Cliente
 
 def send_email():    
     template = get_template('envio_correo.html')
-    content = template.render()
-    usuario = settings.EMAIL_HOST_USER 
-
     clientes = Cliente.objects.all()
     lista_clientes = []
     for cliente in clientes:
         lista_clientes.append(cliente.email)
+        context = {"nombre":cliente.nombres}   
+        content = template.render(context)
+        usuario = settings.EMAIL_HOST_USER 
 
-    email = EmailMultiAlternatives(
-        'Un correo de prueba',
-        'prueba inplace',
-        settings.EMAIL_HOST_USER,
-        lista_clientes,
-    )
 
-    email.attach_alternative(content,'text/html')
-    email.send()
+        email = EmailMultiAlternatives(
+            'Promociones del Mes',
+            'prueba inplace',
+            settings.EMAIL_HOST_USER,
+            [cliente.email]
+        )
+
+        email.attach_alternative(content,'text/html')
+        email.send()
     #import pdb;pdb.set_trace();
 
 def request_email(request):
