@@ -11,6 +11,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # propias
 from apps.comercial.models import Cliente,TelefonoCliente
 from apps.comercial.forms import ClienteForm,TelefonoClienteForm
+from tablib import Dataset
+from apps.comercial.resources import ClienteResource
 
 """Listar clientes"""
 class ClienteListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
@@ -66,6 +68,19 @@ class ClienteCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Creat
         return context
     
     def post(self,request,*args,**kwgars):
+
+        
+        if request.POST['action'] not in '':
+            cliente_resource = ClienteResource()  
+            dataset = Dataset()  
+            nuevos_clientes = request.FILES['csvfile']
+            imported_data = dataset.load(nuevos_clientes.read())
+            result = cliente_resource.import_data(dataset, dry_run=True)
+            if not result.has_errors():  
+                cliente_resource.import_data(dataset, dry_run=False)
+                return redirect('clientes_lista')
+
+
         self.object = self.get_object
         form = self.form_class(request.POST)
         telefonos = []

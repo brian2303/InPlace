@@ -40,5 +40,13 @@
         </div>
     </div>
 </form>
-    
+<form method="POST" enctype="multipart/form-data">  
+    {% csrf_token %}
+    <br>  
+    <h3>Carga Masiva de Datos</h3>
+    <br>
+    <input type="file" name="csvfile"> 
+    <input type="hidden" name="action" value="carga_datos">
+    <button class="btn btn-primary" type="submit">Cargar Datos</button>  
+</form> 
 {% endblock contentprincipal %}
