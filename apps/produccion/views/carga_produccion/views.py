@@ -6,9 +6,10 @@ def importar(request):
     if request.method == 'POST':  
         categoria_resource = CategoriaProductosResource()  
         dataset = Dataset()  
-        print(dataset)  
+        ##print(dataset)  
         nuevas_categorias = request.FILES['xlsxfile']  
-        print(nuevas_categorias)  
+        #print(nuevas_categorias)
+        import pdb; pdb.set_trace()  
         imported_data = dataset.load(nuevas_categorias.read())  
         print(dataset)  
         result = categoria_resource.import_data(dataset, dry_run=True) # Test the data import  
