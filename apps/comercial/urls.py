@@ -17,5 +17,4 @@ urlpatterns = [
     path('cotizaciones/lista',CotizacionesListView.as_view(),name='cotizaciones_lista'),
     path('ventas/eliminar/<int:pk>',VentasDeleteView.as_view(),name='venta_eliminar'),
     path('ventas/editar/<int:pk>',VentasUpdateView.as_view(),name='venta_editar'),
-    path('clientes/carga',importar,name="cliente_cargar"),
 ]
