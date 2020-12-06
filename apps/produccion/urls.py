@@ -6,7 +6,7 @@ from apps.produccion.views.categorias.views import *
 from apps.produccion.views.productos.views import *
 from apps.produccion.views.transportadora.views import *
 from apps.produccion.views.produccion.views import *
-from apps.produccion.views.carga_produccion.views import importar
+
 urlpatterns = [
     path('categoria/lista', CategoriaProductosListView.as_view(),name='categorias_lista'),
     path('categoria/crear', CategoriaProductosCreateView.as_view(),name='categoria_crear'),
@@ -24,5 +24,5 @@ urlpatterns = [
     path('produccion/crear/',OrdenProduccionCreateView.as_view(),name='produccion_crear'),
     path('produccion/editar/<int:pk>',OrdenProduccionUpdateView.as_view(),name='produccion_editar'),
     path('produccion/eliminar/<int:pk>',OrdenProduccionDeleteView.as_view(),name='produccion_eliminar'),
-    path('categorias/carga',importar,name="categoria_cargar")
+   
 ]
