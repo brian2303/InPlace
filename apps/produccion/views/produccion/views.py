@@ -16,7 +16,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # modelo de Produccion
 from apps.produccion.models import OrdenProduccion
 from apps.produccion.forms import OrdenProduccionForm
-
 """Listar Ordenes de producción"""
 class OrdenProduccionListView(LoginRequiredMixin,ListView):
     model = OrdenProduccion

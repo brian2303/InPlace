@@ -21,7 +21,6 @@ from apps.login.views import DashboardView
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path('correos/',include('apps.correos.urls')),
     path('admin/', admin.site.urls),

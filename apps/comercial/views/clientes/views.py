@@ -29,12 +29,7 @@ class ClienteListView(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListVie
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
 
-        action = request.POST['action']
-        if action == "envio_correos":
-            import pdb;pdb.set_trace()
-            print("si")
-
-        if body['action'] == 'listar_telefonos':
+        if body['event'] == 'listar_telefonos':
             telefonos_cliente = TelefonoCliente.objects.filter(cliente_id=body['id'])
             for telefono in telefonos_cliente:
                 telefono = model_to_dict(telefono)
@@ -69,8 +64,24 @@ class ClienteCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Creat
     
     def post(self,request,*args,**kwgars):
 
+        if request.POST['action'] == 'registrar_cliente':
+            self.object = self.get_object
+            import pdb; pdb.set_trace()
+            form = self.form_class(request.POST)
+            telefonos = []
+            telefonos.append(request.POST['celular'])
+            if request.POST['telefono_opcional'] not in '':
+                telefonos.append(request.POST['telefono_opcional'])
+            if form.is_valid():
+                cliente = form.save()
+                for telefono in telefonos:
+                    cliente.telefonos.create(numero_telefono=telefono)
+                cliente.save()
+                return redirect('clientes_lista')
+            else:
+                return redirect('cliente_crear')
         
-        if request.POST['action'] not in '':
+        if request.POST['action'] == 'carga_datos':
             cliente_resource = ClienteResource()  
             dataset = Dataset()  
             nuevos_clientes = request.FILES['csvfile']
@@ -79,22 +90,6 @@ class ClienteCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Creat
             if not result.has_errors():  
                 cliente_resource.import_data(dataset, dry_run=False)
                 return redirect('clientes_lista')
-
-
-        self.object = self.get_object
-        form = self.form_class(request.POST)
-        telefonos = []
-        telefonos.append(request.POST['celular'])
-        if request.POST['telefono_opcional'] not in '':
-            telefonos.append(request.POST['telefono_opcional'])
-        if form.is_valid():
-            cliente = form.save()
-            for telefono in telefonos:
-                cliente.telefonos.create(numero_telefono=telefono)
-            cliente.save()
-            return redirect('clientes_lista')
-        else:
-            return redirect('cliente_crear')
         
 
 """modificar cliente"""

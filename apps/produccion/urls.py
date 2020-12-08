@@ -20,9 +20,9 @@ urlpatterns = [
     path('transportadora/crear', TransportadoraCreateView.as_view(),name='transportadora_crear'),
     path('transportadora/editar/<int:pk>',TransportadoraUpdateView.as_view(),name='transportadora_editar'),
     path('transportadora/eliminar/<int:pk>',TransportadoraDeleteView.as_view(),name='transportadora_eliminar'),
-    path('produccion/listar/',OrdenProduccionListView.as_view(),name='produccion_listar'),
-    path('produccion/crear/',OrdenProduccionCreateView.as_view(),name='produccion_crear'),
-    path('produccion/editar/<int:pk>',OrdenProduccionUpdateView.as_view(),name='produccion_editar'),
-    path('produccion/eliminar/<int:pk>',OrdenProduccionDeleteView.as_view(),name='produccion_eliminar'),
+    path('ordenproduccion/listar/',OrdenProduccionListView.as_view(),name='produccion_listar'),
+    path('ordenproduccion/crear/',OrdenProduccionCreateView.as_view(),name='produccion_crear'),
+    path('ordenproduccion/editar/<int:pk>',OrdenProduccionUpdateView.as_view(),name='produccion_editar'),
+    path('ordenproduccion/eliminar/<int:pk>',OrdenProduccionDeleteView.as_view(),name='produccion_eliminar'),
    
 ]
