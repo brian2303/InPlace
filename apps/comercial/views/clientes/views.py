@@ -66,7 +66,7 @@ class ClienteCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Creat
 
         if request.POST['action'] == 'registrar_cliente':
             self.object = self.get_object
-            import pdb; pdb.set_trace()
+            
             form = self.form_class(request.POST)
             telefonos = []
             telefonos.append(request.POST['celular'])
