@@ -105,7 +105,8 @@ class ClienteUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Updat
         context['title'] = 'Editar Cliente'
         context['id_cliente'] = context['object'].pk
         telefonos_cliente = context['object'].telefonos.all()
-        context['celular'] = telefonos_cliente[0].numero_telefono
+        if telefonos_cliente.exists():
+            context['celular'] = telefonos_cliente[0].numero_telefono
         if len(telefonos_cliente) == 2:
             context['telefono_opcional'] = telefonos_cliente[1].numero_telefono
         return context
@@ -115,11 +116,16 @@ class ClienteUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Updat
         self.object = self.get_object
         cliente = Cliente.objects.get(pk=request.POST['cliente_id'])
         form = self.form_class(request.POST,instance=cliente)
+        
         if form.is_valid():
             cliente = form.save(commit=False)
-            celular = cliente.telefonos.first()
-            celular.numero_telefono = request.POST['celular']
-            celular.save()
+            celular = cliente.telefonos.all()
+            if not cliente.telefonos.first() is None:
+                celular = cliente.telefonos.first()
+                celular.numero_telefono = request.POST['celular']
+                celular.save()
+            else:
+                cliente.telefonos.create(numero_telefono=request.POST['celular'])
             if len(cliente.telefonos.all()) == 2:
                 telefono_opcional = cliente.telefonos.last()
                 telefono_opcional.numero_telefono = request.POST['telefono_opcional']
