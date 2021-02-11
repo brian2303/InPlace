@@ -14,7 +14,6 @@ def send_email():
         lista_clientes.append(cliente.email)
         context = {"nombre":cliente.nombres}   
         content = template.render(context)
-        usuario = settings.EMAIL_HOST_USER 
 
 
         email = EmailMultiAlternatives(
