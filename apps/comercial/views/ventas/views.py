@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.forms import model_to_dict
 import json
-from django.db import transaction
+from django.db import transaction,DatabaseError
 from apps.usuarios.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -33,28 +33,41 @@ class VentasCreateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Create
                 data = []
                 productos = Productos.objects.filter(nombre__icontains=request.POST['term'])[0:10]
                 for producto in productos:
+                    if producto.cantidad == 0:
+                        continue
+
                     item = producto.toJSON()
                     item['value'] = producto.nombre
                     data.append(item)
             elif action == 'add':
                 with transaction.atomic():
-                    dict_venta = json.loads(request.POST['ventas'])
-                    venta = Ventas()
-                    venta.estado = dict_venta['estado']
-                    venta.cliente_id = dict_venta['cliente']
-                    venta.fecha = dict_venta['fecha']
-                    venta.subtotal = float(dict_venta['subtotal'])
-                    venta.iva = float(dict_venta['iva'])
-                    venta.total = float(dict_venta['total'])
-                    venta.save()
-                    for producto in dict_venta['productos']:
-                        detalle = DetalleVenta()
-                        detalle.producto_id = producto['id']
-                        detalle.venta_id = venta.pk
-                        detalle.precio_venta = producto['precioventa']
-                        detalle.cantidad = producto['cantidad']
-                        detalle.subtotal = producto['subtotal']
-                        detalle.save()
+                    try:
+                        dict_venta = json.loads(request.POST['ventas'])
+                        venta = Ventas()
+                        venta.estado = dict_venta['estado']
+                        venta.cliente_id = dict_venta['cliente']
+                        venta.fecha = dict_venta['fecha']
+                        venta.subtotal = float(dict_venta['subtotal'])
+                        venta.iva = float(dict_venta['iva'])
+                        venta.total = float(dict_venta['total'])
+                        venta.save()
+                        for producto in dict_venta['productos']:
+                            detalle = DetalleVenta()
+                            detalle.producto_id = producto['id']
+                            detalle.venta_id = venta.pk
+                            detalle.precio_venta = producto['precioventa']
+                            detalle.cantidad = producto['cantidad']
+                            detalle.subtotal = producto['subtotal']
+                            producto_actualizar = Productos.objects.filter(id=producto['id']).first()
+                            cant_producto = producto_actualizar.cantidad
+                            producto_actualizar.cantidad -= producto['cantidad']
+                            detalle.save()
+                            producto_actualizar.save() 
+                    except DatabaseError as e:
+                            data = {
+                                "error":f"{producto_actualizar.nombre} solo tiene {cant_producto} unds disponibles",
+                                "without_stock":True
+                                }
                 
             else:
                 data['error'] = 'No se ha ingresado ninguna opcion'
@@ -117,6 +130,7 @@ class VentasUpdateView(LoginRequiredMixin,ValidatePermissionRequiredMixin,Update
                         detalle.cantidad = producto['cantidad']
                         detalle.subtotal = producto['subtotal']
                         detalle.save()
+
             else:
                 data['error'] = 'No se ha ingresado ninguna opcion'
         except Exception as e:

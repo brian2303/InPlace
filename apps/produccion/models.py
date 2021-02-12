@@ -22,7 +22,7 @@ class CategoriaProductos(models.Model):
 """Modelo de Productos"""
 class Productos(models.Model):
     nombre=models.CharField(max_length=25)
-    cantidad=models.CharField(max_length=11)
+    cantidad=models.PositiveIntegerField()
     precio_unitario=models.DecimalField(max_digits=15, decimal_places=2)
     categoria=models.ForeignKey(
         CategoriaProductos,
