@@ -90,25 +90,25 @@ WSGI_APPLICATION = 'InPlace.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'inplace',
-#         'USER': 'root',
-#         'PASSWORD':'Admin1234*',
-#         'HOST':'localhost',
-#         'PORT':3306,
-#     }
-# }
-
-import dj_database_url
-from decouple import config
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'inplace',
+        'USER': 'root',
+        'PASSWORD':'Admin1234*',
+        'HOST':'localhost',
+        'PORT':3306,
+    }
 }
+
+# import dj_database_url
+# from decouple import config
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -148,8 +148,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_ROOT = 'staticfiles'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
