@@ -20,6 +20,7 @@ mysqlclient==2.0.1
 odfpy==1.4.1
 openpyxl==3.0.5
 Pillow==8.0.1
+psycopg2-binary==2.8.6
 pynliner==0.8.0
 PyPDF2==1.26.0
 python-bidi==0.4.2
