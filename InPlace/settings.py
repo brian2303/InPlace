@@ -167,7 +167,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 EMAIL_HOST = 'mail.scarto.co'
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 EMAIL_HOST_USER = '	info@scarto.co'
 EMAIL_HOST_PASSWORD = 'Jcc2090345*'
 EMAIL_USE_TLS = True
