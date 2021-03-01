@@ -166,10 +166,10 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'mail.scarto.co'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'gomito5888@gmail.com'
-EMAIL_HOST_PASSWORD = 'DjTiesto'
+EMAIL_HOST_USER = '	info@scarto.co'
+EMAIL_HOST_PASSWORD = 'Jcc2090345*'
 EMAIL_USE_TLS = True
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
