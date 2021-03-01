@@ -168,8 +168,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'heippi.prueba@gmail.com'
-EMAIL_HOST_PASSWORD = 'Admin1234*'
+EMAIL_HOST_USER = 'gomito5888@gmail.com'
+EMAIL_HOST_PASSWORD = 'DjTiesto'
 EMAIL_USE_TLS = True
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
